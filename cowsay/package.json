@@ -1,0 +1,25 @@
+{
+  "name": "cowsay",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "include": [
+    "src/**/*.ts"
+  ],
+  "type": "module",
+  "main": "dist/cowsay.js",
+  "scripts": {
+    "bundle": "npx rollup -c",
+    "componentize": "npx jco componentize cowsay.js --wit src/cowsay.wit -o cowsay.wasm",
+    "wit": "npx jco wit cowsay.wasm",
+    "transpile": "npx jco transpile cowsay.wasm -o dist",
+    "build": "npm run bundle; npm run componentize"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.21.3",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.6.2"
+  }
+}

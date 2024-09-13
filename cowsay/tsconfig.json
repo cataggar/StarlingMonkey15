@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "outDir": "./",
+    "typeRoots": ["./node_modules/@types"],
+    "target": "ES2023",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  }
+}

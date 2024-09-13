@@ -1,0 +1,6 @@
+package local:cowsay;
+world cowsay {
+  export cow: interface {
+    ts-version: func() -> string;
+  }
+}

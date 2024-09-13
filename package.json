@@ -1,0 +1,14 @@
+{
+    "name": "starling-monkey-15",
+    "private": true,
+    "workspaces": [
+        "cowsay",
+        "cowsay-test"
+    ],
+    "scripts": {
+        "build": "npm run build --workspace=cowsay"
+    },
+    "devDependencies": {
+        "@bytecodealliance/jco": "^1.6.0"
+    }
+}

@@ -1,0 +1,6 @@
+artifact/
+node_modules/
+packages/cowsay/cowsay.js
+packages/cowsay/cowsay.wasm
+dist/
+packages/cowsay-test/cowsay-test.js
