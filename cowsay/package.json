@@ -17,7 +17,7 @@
     "build": "npm run bundle; npm run componentize"
   },
   "dependencies": {
-    "@bytecodealliance/componentize-js": "^0.12.0"
+    "@bytecodealliance/componentize-js": "^0.13.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",

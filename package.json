@@ -9,6 +9,6 @@
         "build": "npm run build --workspace=cowsay"
     },
     "devDependencies": {
-        "@bytecodealliance/jco": "^1.6.0"
+        "@bytecodealliance/jco": "^1.7.0"
     }
 }
