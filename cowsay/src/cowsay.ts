@@ -5,6 +5,6 @@ export function test() {
 }
 
 export function tsVersion() {
-  // return ts.version;
-  return ts.versionMajorMinor;
+  return ts.version;
+  // return ts.versionMajorMinor;
 }

@@ -10,18 +10,14 @@
   "type": "module",
   "main": "dist/cowsay.js",
   "scripts": {
-    "bundle": "npx rollup -c",
-    "componentize": "npx jco componentize cowsay.js --wit src/cowsay.wit -o cowsay.wasm",
-    "wit": "npx jco wit cowsay.wasm",
-    "transpile": "npx jco transpile cowsay.wasm -o dist",
-    "build": "npm run bundle; npm run componentize; npm run transpile"
+    "bundle": "bun run build.ts",
+    "componentize": "bunx jco componentize cowsay.js --wit src/cowsay.wit -o cowsay.wasm",
+    "wit": "bunx jco wit cowsay.wasm",
+    "transpile": "bunx jco transpile cowsay.wasm -o dist",
+    "build": "bun run bundle; bun run componentize; bun run transpile"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "rollup": "^4.21.3",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "@types/bun": "^1.1.11"
   }
 }

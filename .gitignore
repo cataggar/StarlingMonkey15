@@ -6,3 +6,5 @@ dist/
 packages/cowsay-test/cowsay-test.js
 cowsay/cowsay.js
 cowsay/cowsay.wasm
+package-lock.json
+yarn.lock
