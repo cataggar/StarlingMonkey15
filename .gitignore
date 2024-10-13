@@ -8,3 +8,4 @@ cowsay/cowsay.js
 cowsay/cowsay.wasm
 package-lock.json
 yarn.lock
+cowsay-test/cowsay-test.js
