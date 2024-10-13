@@ -1,6 +1,5 @@
 package local:cowsay;
 world cowsay {
-  export cow: interface {
-    ts-version: func() -> string;
-  }
+  export test: func() -> string;
+  export ts-version: func() -> string;
 }

@@ -1,9 +1,10 @@
 import * as ts from 'typescript';
 
-export const cow = {
+export function test() {
+  return "ok";
+}
 
-  tsVersion(): string {
-    return ts.version;
-  }
-
-};
+export function tsVersion() {
+  // return ts.version;
+  return ts.versionMajorMinor;
+}

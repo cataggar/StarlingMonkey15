@@ -6,9 +6,9 @@
         "cowsay-test"
     ],
     "scripts": {
-        "build": "npm run build --workspace=cowsay"
+        "build": "npm -w cowsay run build; npm -w cowsay-test run build"
     },
     "devDependencies": {
-        "@bytecodealliance/jco": "^1.7.0"
+        "@bytecodealliance/jco": "file:../jco"
     }
 }
