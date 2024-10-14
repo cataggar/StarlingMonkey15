@@ -6,5 +6,11 @@ export function test() {
 
 export function tsVersion() {
   return ts.version;
-  // return ts.versionMajorMinor;
+}
+
+export class CompilerOptions {
+  inner: number;
+  constructor(){
+    this.inner = 3;
+  }
 }

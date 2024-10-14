@@ -2,4 +2,7 @@ package local:cowsay;
 world cowsay {
   export test: func() -> string;
   export ts-version: func() -> string;
+  resource compiler-options {
+    constructor();
+  }
 }
