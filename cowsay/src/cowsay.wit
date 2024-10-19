@@ -1,3 +1,5 @@
+// https://component-model.bytecodealliance.org/design/wit.html
+
 package local:cowsay;
 
 world cowsay {
@@ -18,7 +20,10 @@ world cowsay {
       create-void-zero: func() -> voidexpression;
     }
     resource voidexpression {
-      kind: func() -> u8;
+      // kind: func() -> u8;
+      kind: func() -> syntax-kind;
     }
+    // bigger becuase 371
+    type syntax-kind = u16;
   }
 }
