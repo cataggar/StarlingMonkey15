@@ -1,0 +1,17 @@
+package example:component;
+
+// world example {
+//     export add: func(x: s32, y: s32) -> s32;
+// }
+
+interface add {
+    add: func(x: u32, y: u32) -> u32;
+}
+
+world example {
+    export add;
+}
+
+world hostapp {
+    import add;
+}

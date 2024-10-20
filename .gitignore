@@ -9,5 +9,7 @@ cowsay/cowsay.wasm
 package-lock.json
 yarn.lock
 cowsay-test/cowsay-test.js
-adder/obj
-adder/bin
+obj/
+bin/
+.vs/
+*.wasm

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35417.248 main
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "adder", "adder\adder.csproj", "{9B205B5A-DF65-437F-968A-5E7683611DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "host-app", "host-app\host-app.csproj", "{A9EF17BF-5F72-4710-81AD-F946D8F11C05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B205B5A-DF65-437F-968A-5E7683611DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B205B5A-DF65-437F-968A-5E7683611DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B205B5A-DF65-437F-968A-5E7683611DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B205B5A-DF65-437F-968A-5E7683611DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9EF17BF-5F72-4710-81AD-F946D8F11C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9EF17BF-5F72-4710-81AD-F946D8F11C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9EF17BF-5F72-4710-81AD-F946D8F11C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9EF17BF-5F72-4710-81AD-F946D8F11C05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

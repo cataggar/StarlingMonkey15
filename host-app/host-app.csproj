@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>host_app</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -19,8 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="BytecodeAlliance.Componentize.DotNet.Wasm.SDK" Version="0.3.0-preview00006" />
-    <!-- <Wit Update="../cowsay/cowsay.wit" World="cowsay" /> -->
-    <Wit Update="add.wit" World="example" />
+    <Wit Update="add.wit" World="hostapp" />
   </ItemGroup>
 
 </Project>
