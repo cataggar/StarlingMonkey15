@@ -1,0 +1,35 @@
+// https://component-model.bytecodealliance.org/design/wit.html
+
+package local:cowsay;
+
+interface canvas {
+  ts-version: func() -> string;
+  resource compileroptions {
+    constructor();
+    inner: func() -> u8;
+    // set_inner: func(string) -> void;
+  }
+  // resource bundle {
+  //   constructor();
+  //   kind: func() -> u8;
+  // }
+  node-factory: func() -> nodefactory;
+  resource nodefactory {
+    create-void-zero: func() -> voidexpression;
+  }
+  resource voidexpression {
+    // kind: func() -> u8;
+    kind: func() -> syntax-kind;
+  }
+  // bigger becuase 371
+  type syntax-kind = u16;
+}
+
+world cowsay {
+  // export test: func() -> string;
+  export canvas;
+}
+
+world hostapp {
+  import canvas;
+}

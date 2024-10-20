@@ -21,7 +21,10 @@
 
   <ItemGroup>
     <PackageReference Include="BytecodeAlliance.Componentize.DotNet.Wasm.SDK" Version="0.3.0-preview00006" />
-    <Wit Update="add.wit" World="hostapp" />
+    <!-- <Wit Update="add.wit" World="hostapp" /> -->
+    <!-- Using other directories is not working. -->
+    <!-- <Wit Update="../adder/add.wit" World="hostapp" /> -->
+    <Wit Update="cowsay.wit" World="hostapp" />
   </ItemGroup>
 
 </Project>
