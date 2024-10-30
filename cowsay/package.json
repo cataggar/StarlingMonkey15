@@ -17,7 +17,8 @@
     "build": "bun run bundle; bun run componentize; bun run transpile"
   },
   "devDependencies": {
-    "typescript": "^5.6.2",
-    "@types/bun": "^1.1.11"
+    "typescript": "5.6.3",
+    "@types/bun": "1.1.12",
+    "@bytecodealliance/jco": "1.7.1"
   }
 }

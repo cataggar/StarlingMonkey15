@@ -7,8 +7,5 @@
     ],
     "scripts": {
         "build": "npm -w cowsay run build; npm -w cowsay-test run build"
-    },
-    "devDependencies": {
-        "@bytecodealliance/jco": "file:../jco"
     }
 }

@@ -6,7 +6,7 @@ world cowsay {
   export test: func() -> string;
   export canvas: interface {
     ts-version: func() -> string;
-    resource compileroptions {
+    resource compiler-options {
       constructor();
       inner: func() -> u8;
       // set_inner: func(string) -> void;

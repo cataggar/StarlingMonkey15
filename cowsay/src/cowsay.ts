@@ -3,7 +3,7 @@ export function test() {
     return "ok";
 }
 
-class Compileroptions {
+class CompilerOptions {
     private _inner;
     constructor() {
         this._inner = 3;
@@ -57,7 +57,7 @@ function nodeFactory() {
 
 export const canvas = {
     tsVersion,
-    Compileroptions,
+    CompilerOptions,
     nodeFactory,
     Nodefactory,
     Voidexpression,
