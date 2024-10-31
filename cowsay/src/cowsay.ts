@@ -7,7 +7,6 @@ class CompilerOptions {
     private _inner: ts.CompilerOptions;
     constructor() {
         this._inner = new Object() as ts.CompilerOptions;
-        this._inner.alwaysStrict
     }
     inner() {
         return this._inner;
@@ -26,8 +25,8 @@ class CompilerOptions {
     }
 }
 
-function createCompilerHost(options: CompilerOptions) {
-    return ts.createCompilerHost(options.inner());
+function createCompilerHost(options: CompilerOptions): CompilerHost {
+    return new CompilerHost(ts.createCompilerHost(options.inner()));
 }
 
 class FnUseCaseSensitiveFileNames {
@@ -82,8 +81,8 @@ class FnGetSourceFile {
 
 class CompilerHost {
     private _inner: ts.CompilerHost;
-    constructor(options: CompilerOptions) {
-        this._inner = createCompilerHost(options);
+    constructor(inner: ts.CompilerHost) {
+        this._inner = inner;
     }
 
     setGetCurrentDirectory(fn: FnGetCurrentDirectory) {
@@ -95,7 +94,7 @@ class CompilerHost {
     }
 
     setGetSourceFile(fn: FnGetSourceFile) {
-        this._inner.getSourceFile = (fileName, languageVersionOrOptions, onError, shouldCreateNewSourceFile) => {
+        this._inner.getSourceFile = function(fileName: string, languageVersionOrOptions: ts.ScriptTarget, onError?: (message: string) => void, shouldCreateNewSourceFile?: boolean) {
             let fnOnError = new FnOnError(onError || (() => {}));
             if (typeof languageVersionOrOptions === "number") {
                 return fn.call(fileName, languageVersionOrOptions, fnOnError);
@@ -105,8 +104,8 @@ class CompilerHost {
 
     setUseCaseSensitiveFileNames(fn: FnUseCaseSensitiveFileNames) {
         console.log("setUseCaseSensitiveFileNames");
-        console.log("comiplerHost", this._inner);
-        this._inner.useCaseSensitiveFileNames = fn.call;
+        console.log("compilerHost", this._inner);
+        // this._inner.useCaseSensitiveFileNames = fn.call;
     }
 }
 

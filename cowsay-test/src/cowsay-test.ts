@@ -35,6 +35,7 @@ let options = new canvas.CompilerOptions();
 
 options.setTarget(ScriptTarget.ESNext);
 
+console.log("call createCompilerHost")
 let compilerHost = canvas.createCompilerHost(options, false);
 console.log("compilerHost created", compilerHost);
 
