@@ -4,12 +4,21 @@ export function test() {
 }
 
 class CompilerOptions {
-    private _inner;
+    private _inner: ts.CompilerOptions;
     constructor() {
-        this._inner = 3;
+        this._inner = new Object() as ts.CompilerOptions;
+        this._inner.alwaysStrict
     }
     inner() {
         return this._inner;
+    }
+
+    getAlwaysStrict(): boolean | undefined {
+        return this._inner.alwaysStrict;
+    }
+
+    setAlwaysStrict(value: boolean | undefined) {
+        this._inner.alwaysStrict = value;
     }
 }
 

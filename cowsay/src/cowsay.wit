@@ -10,6 +10,8 @@ world cowsay {
       constructor();
       inner: func() -> u8;
       // set_inner: func(string) -> void;
+      get-always-strict: func() -> option<bool>;
+      set-always-strict: func(value: option<bool>);
     }
     // resource bundle {
     //   constructor();
