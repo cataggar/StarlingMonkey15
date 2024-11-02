@@ -6,13 +6,29 @@ world cowsay {
   export test: func() -> string;
   export canvas: interface {
     ts-version: func() -> string;
+
     resource compiler-options {
       constructor();
       inner: func() -> u8;
       // set_inner: func(string) -> void;
       get-always-strict: func() -> option<bool>;
       set-always-strict: func(value: option<bool>);
+      set-target: func(value: option<script-target>);
     }
+
+    create-compiler-host: func(options: compiler-options, set-parent-nodes: option<bool>) -> compiler-host;
+
+    resource compiler-host {
+      set-use-case-sensitive-file-names: func(value: bool);
+      // set-get-current-directory: func(value: func() -> string);
+      set-get-current-directory: func(fn: fn-get-current-directory);
+      // set-get-canonical-file-name: func(value: func(string) -> string);
+    }
+
+    resource fn-get-current-directory {
+      call: func() -> string;
+    }
+
     // resource bundle {
     //   constructor();
     //   kind: func() -> u8;
@@ -27,5 +43,7 @@ world cowsay {
     }
     // bigger becuase 371
     type syntax-kind = u16;
+
+    type script-target = string;
   }
 }

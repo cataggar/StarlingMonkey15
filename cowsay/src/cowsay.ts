@@ -20,6 +20,34 @@ class CompilerOptions {
     setAlwaysStrict(value: boolean | undefined) {
         this._inner.alwaysStrict = value;
     }
+
+    setTarget(value: ts.ScriptTarget | undefined) {
+        this._inner.target = value;
+    }
+}
+
+function createCompilerHost(options: CompilerOptions) {
+    return ts.createCompilerHost(options.inner());
+}
+
+class FnGetCurrentDirectory {
+    private _fn: () => string;
+    constructor(fn: () => string) {
+        this._fn = fn;
+    }
+    call() {
+        return this._fn();
+    }
+}
+
+class CompilerHost {
+    private _inner: ts.CompilerHost;
+    constructor(options: CompilerOptions) {
+        this._inner = createCompilerHost(options);
+    }
+    setGetCurrentDirectory(fn: FnGetCurrentDirectory) {
+        this._inner.getCurrentDirectory = fn.call;
+    }
 }
 
 class Bundle {
@@ -70,4 +98,7 @@ export const canvas = {
     nodeFactory,
     Nodefactory,
     Voidexpression,
+    CompilerHost,
+    FnGetCurrentDirectory,
+    createCompilerHost,
 };
