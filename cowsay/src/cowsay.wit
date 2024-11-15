@@ -19,14 +19,35 @@ world cowsay {
     create-compiler-host: func(options: compiler-options, set-parent-nodes: option<bool>) -> compiler-host;
 
     resource compiler-host {
-      set-use-case-sensitive-file-names: func(value: bool);
+      set-use-case-sensitive-file-names: func(fn: fn-use-case-sensitive-file-names);
       // set-get-current-directory: func(value: func() -> string);
       set-get-current-directory: func(fn: fn-get-current-directory);
-      // set-get-canonical-file-name: func(value: func(string) -> string);
+      set-get-canonical-file-name: func(fn: fn-get-canonical-file-name);
+      set-get-source-file: func(fn: fn-get-source-file);
+    }
+
+    resource fn-use-case-sensitive-file-names {
+      call: func() -> bool;
     }
 
     resource fn-get-current-directory {
       call: func() -> string;
+    }
+
+    resource fn-get-canonical-file-name {
+      call: func(file-name: string) -> string;
+    }
+
+    resource fn-get-source-file {
+      call: func(file-name: string, language-version: language-version, on-error: option<fn-on-error>, should-create-new-source-file: option<bool>) -> option<source-file>;
+    }
+
+    resource fn-on-error {
+      call: func(message: string);
+    }
+
+    resource source-file {
+      kind: func() -> syntax-kind;
     }
 
     // resource bundle {
@@ -45,5 +66,7 @@ world cowsay {
     type syntax-kind = u16;
 
     type script-target = string;
+
+    type language-version = u8;
   }
 }

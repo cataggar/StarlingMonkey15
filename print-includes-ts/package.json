@@ -1,0 +1,19 @@
+{
+  "name": "print-includes",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "include": [
+    "src/**/*.ts"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "@types/bun": "1.1.12"
+  },
+  "scripts": {
+    "build": "bunx tsc",
+    "start": "node cowsay-test.js"
+  }
+}

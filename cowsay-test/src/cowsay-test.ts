@@ -36,12 +36,40 @@ let options = new canvas.CompilerOptions();
 options.setTarget(ScriptTarget.ESNext);
 
 let compilerHost = canvas.createCompilerHost(options, false);
+console.log("compilerHost created", compilerHost);
+
+let fnUseCaseSensitiveFileNames = new canvas.FnUseCaseSensitiveFileNames();
+fnUseCaseSensitiveFileNames.call = () => {
+    console.log("call useCaseSensitiveFileNames");
+    return true;
+};
+compilerHost.setUseCaseSensitiveFileNames(fnUseCaseSensitiveFileNames);
+
 let fnGetCurrentDirectory = new canvas.FnGetCurrentDirectory();
 fnGetCurrentDirectory.call = () => {
     console.log("call getCurrentDirectory");
     return "";
 };
 compilerHost.setGetCurrentDirectory(fnGetCurrentDirectory);
+
+let fnGetCanonicalFileName = new canvas.FnGetCanonicalFileName();
+fnGetCanonicalFileName.call = (fileName: string) => {
+    console.log("call getCanonicalFileName");
+    return fileName;
+};
+compilerHost.setGetCanonicalFileName(fnGetCanonicalFileName);
+
+let fnOnError = new canvas.FnOnError();
+fnOnError.call = (message) => {
+    console.log("call onError");
+};
+
+let fnGetSourceFile = new canvas.FnGetSourceFile();
+fnGetSourceFile.call = (fileName, languageVersion, onError) => {
+    console.log("call getSourceFile");
+    return undefined;
+};
+compilerHost.setGetSourceFile(fnGetSourceFile);
 
 let nodeFactory = canvas.nodeFactory();
 let voidZero = nodeFactory.createVoidZero();
