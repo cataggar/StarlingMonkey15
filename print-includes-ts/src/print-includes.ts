@@ -4,7 +4,7 @@ import * as ts from 'typescript';
 
 let compilerOptions: ts.CompilerOptions = {};
 compilerOptions.target = ts.ScriptTarget.ESNext;
-compilerOptions.lib = ["lib.es2022.d.ts"];
+// compilerOptions.lib = ["lib.es2022.d.ts"];
 compilerOptions.esModuleInterop = true;
 // compilerOptions.skipDefaultLibCheck = true;
 compilerOptions.moduleResolution = ts.ModuleResolutionKind.NodeNext;
