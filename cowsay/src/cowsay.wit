@@ -8,15 +8,16 @@ world cowsay {
     ts-version: func() -> string;
 
     resource compiler-options {
-      constructor();
-      inner: func() -> u8;
+      // constructor();
+      // inner: func() -> u8;
+      create: static func() -> compiler-options;
       // set_inner: func(string) -> void;
       get-always-strict: func() -> option<bool>;
       set-always-strict: func(value: option<bool>);
       set-target: func(value: option<script-target>);
     }
 
-    create-compiler-host: func(options: compiler-options, set-parent-nodes: option<bool>) -> compiler-host;
+    create-compiler-host: func(options: borrow<compiler-options>, set-parent-nodes: option<bool>) -> compiler-host;
 
     resource compiler-host {
       set-use-case-sensitive-file-names: func(fn: fn-use-case-sensitive-file-names);
@@ -27,22 +28,27 @@ world cowsay {
     }
 
     resource fn-use-case-sensitive-file-names {
+      constructor();
       call: func() -> bool;
     }
 
     resource fn-get-current-directory {
+      constructor();
       call: func() -> string;
     }
 
     resource fn-get-canonical-file-name {
+      constructor();
       call: func(file-name: string) -> string;
     }
 
     resource fn-get-source-file {
+      constructor();
       call: func(file-name: string, language-version: language-version, on-error: option<fn-on-error>, should-create-new-source-file: option<bool>) -> option<source-file>;
     }
 
     resource fn-on-error {
+      constructor();
       call: func(message: string);
     }
 
@@ -55,9 +61,11 @@ world cowsay {
     //   kind: func() -> u8;
     // }
     node-factory: func() -> nodefactory;
+
     resource nodefactory {
       create-void-zero: func() -> voidexpression;
     }
+
     resource voidexpression {
       // kind: func() -> u8;
       kind: func() -> syntax-kind;
@@ -68,5 +76,22 @@ world cowsay {
     type script-target = string;
 
     type language-version = u8;
+
+    // create-program: func(root-names: list<string>, options: compiler-options, host: compiler-host) -> program;
+    // create-program: func(options: borrow<compiler-options>, host: borrow<compiler-host>) -> program;
+    create-program: func(options: borrow<compiler-options>) -> program;
+
+    resource program {
+      get-type-checker: func() -> type-checker;
+    }
+
+    resource type-checker {
+    }
+
+    get-pre-emit-diagnostics: func(program: program) -> list<diagnostic>;
+
+    resource diagnostic {
+      message-text: func() -> string;
+    }
   }
 }

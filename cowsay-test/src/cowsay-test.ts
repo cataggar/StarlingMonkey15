@@ -21,9 +21,11 @@ export enum ScriptTarget {
     Latest = "esnext",
 }
 
-console.log(test());
+console.log(test()); // sets the TS System
+
 console.log(canvas.tsVersion());
-let options = new canvas.CompilerOptions();
+// let options = new canvas.CompilerOptions();
+let options = canvas.CompilerOptions.create();
 // console.log(options.inner());
 // console.log(options.getAlwaysStrict());
 // options.setAlwaysStrict(true);
@@ -39,12 +41,12 @@ console.log("call createCompilerHost")
 let compilerHost = canvas.createCompilerHost(options, false);
 console.log("compilerHost created", compilerHost);
 
-let fnUseCaseSensitiveFileNames = new canvas.FnUseCaseSensitiveFileNames();
-fnUseCaseSensitiveFileNames.call = () => {
-    console.log("call useCaseSensitiveFileNames");
-    return true;
-};
-compilerHost.setUseCaseSensitiveFileNames(fnUseCaseSensitiveFileNames);
+// let fnUseCaseSensitiveFileNames = new canvas.FnUseCaseSensitiveFileNames();
+// fnUseCaseSensitiveFileNames.call = () => {
+//     console.log("call useCaseSensitiveFileNames");
+//     return true;
+// };
+// compilerHost.setUseCaseSensitiveFileNames(fnUseCaseSensitiveFileNames);
 
 let fnGetCurrentDirectory = new canvas.FnGetCurrentDirectory();
 fnGetCurrentDirectory.call = () => {
@@ -79,5 +81,11 @@ console.log(voidZero.kind());
 // import { cow } from 'cowsay';
 // console.log(cow.tsVersion());
 
-
+console.log("call createProgram");
+// let program = canvas.createProgram(["abc.ts"], options, compilerHost);
+// let program = canvas.createProgram(options, compilerHost);
+let program = canvas.createProgram(options);
+let checker = program.getTypeChecker();
+let diagnostics = canvas.getPreEmitDiagnostics(program);
+console.log("diagnostics", diagnostics);
 
