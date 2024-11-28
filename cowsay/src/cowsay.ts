@@ -1,10 +1,11 @@
 import * as ts from 'typescript';
+import * as fs from 'node:fs';
+// import * as process from 'process';
+
 export function test() {
 
     let tsa = ts as any;
-    let sys: ts.System = tsa.sys;
-    // console.log("sys: ", sys);
-    tsa.setSys(new System(sys))
+    tsa.setSys(new System())
 
     return "ok";
 }
@@ -178,92 +179,98 @@ function nodeFactory() {
 // https://github.com/microsoft/TypeScript/blob/main/src/harness/fakesHosts.ts
 
 class System implements ts.System {
-    private inner: ts.System;
-    constructor(inner: ts.System) {
-        this.inner = inner;
-    }
     public readonly args: string[] = [];
     public readonly output: string[] = [];
     public readonly newLine: string = "\n";
     public readonly useCaseSensitiveFileNames = true;
 
-    write(s: string): void {
-        console.log("System.write ", s);
-        this.inner.write(s);
+    write(message: string): void {
+        throw new Error('System.write Method not implemented.');
+        // console.log("System.write ", message);
+        // this.output.push(message);
     }
     writeOutputIsTTY?(): boolean {
-        console.log("System.writeOutputIsTTY");
-        return this.inner.writeOutputIsTTY ? this.inner.writeOutputIsTTY() : false;
+        throw new Error('System.writeOutputIsTTY Method not implemented.');
+        // console.log("System.writeOutputIsTTY");
+        // return false;
     }
     getWidthOfTerminal?(): number {
+        throw new Error('System.getWidthOfTerminal Method not implemented.');
         console.log("System.getWidthOfTerminal");
-        return this.inner.getWidthOfTerminal ? this.inner.getWidthOfTerminal() : 120;
+        return 120;
     }
     readFile(path: string, encoding?: string): string | undefined {
         console.log("System.readFile ", path);
-        return this.inner.readFile(path, encoding);
+        return fs.readFileSync(path, encoding as BufferEncoding || 'utf-8');
     }
     getFileSize?(path: string): number {
+        throw new Error('System.getFileSize Method not implemented.');
         console.log("System.getFileSize ", path);
-        return this.inner.getFileSize ? this.inner.getFileSize(path) : 0;
+        // return this.inner.getFileSize ? this.inner.getFileSize(path) : 0;
     }
     writeFile(path: string, data: string, writeByteOrderMark?: boolean): void {
-        throw new Error('writeFile Method not implemented.');
+        throw new Error('System.writeFile Method not implemented.');
     }
     watchFile?(path: string, callback: ts.FileWatcherCallback, pollingInterval?: number, options?: ts.WatchOptions): ts.FileWatcher {
-        throw new Error('watchFile Method not implemented.');
+        throw new Error('System.watchFile Method not implemented.');
     }
     watchDirectory?(path: string, callback: ts.DirectoryWatcherCallback, recursive?: boolean, options?: ts.WatchOptions): ts.FileWatcher {
-        throw new Error('watchDirectory Method not implemented.');
+        throw new Error('System.watchDirectory Method not implemented.');
     }
     resolvePath(path: string): string {
         throw new Error('resolvePath Method not implemented.');
     }
     fileExists(path: string): boolean {
-        let fileExists = this.inner.fileExists(path);
+        let fileExists = fs.existsSync(path);
         console.log("System.fileExists ", path, fileExists);
         return fileExists;
+
     }
     directoryExists(path: string): boolean {
-        let directoryExists = this.inner.directoryExists(path);
+        let directoryExists = fs.existsSync(path);
         console.log("System.directoryExists ", path, directoryExists);
         return directoryExists;
     }
     createDirectory(path: string): void {
-        throw new Error('createDirectory Method not implemented.');
+        throw new Error('System.createDirectory Method not implemented.');
     }
     getExecutingFilePath(): string {
-        let executingFilePath = this.inner.getExecutingFilePath();
-        console.log("System.executingFilePath: ", executingFilePath);
-        return executingFilePath;
+        // let executingFilePath = process.argv[1];
+        // console.log("System.executingFilePath: ", executingFilePath);
+        // return executingFilePath;
+        // return "cowsay.js";
+        return "";
     }
     getCurrentDirectory(): string {
-        let currentDirectory = this.inner.getCurrentDirectory();
-        console.log("System.getCurrentDirectory: ", currentDirectory);
-        return currentDirectory;
+        // throw new Error('System.getCurrentDirectory Method not implemented.');
+        // let currentDirectory = this.inner.getCurrentDirectory();
+        // console.log("System.getCurrentDirectory: ", currentDirectory);
+        // return currentDirectory;
+        return "";
     }
     getDirectories(path: string): string[] {
-        let directories = this.inner.getDirectories(path);
-        console.log("System.getDirectories: ", path, directories);
-        return directories;
+        throw new Error('System.getDirectories Method not implemented.');
+        // let directories = this.inner.getDirectories(path);
+        // console.log("System.getDirectories: ", path, directories);
+        // return directories;
     }
     readDirectory(path: string, extensions?: readonly string[], exclude?: readonly string[], include?: readonly string[], depth?: number): string[] {
-        throw new Error('readDirectory Method not implemented.');
+        throw new Error('System.readDirectory Method not implemented.');
     }
     getModifiedTime?(path: string): Date | undefined {
-        throw new Error('getModifiedTime Method not implemented.');
+        throw new Error('System.getModifiedTime Method not implemented.');
     }
     setModifiedTime?(path: string, time: Date): void {
-        throw new Error('setModifiedTime Method not implemented.');
+        throw new Error('System.setModifiedTime Method not implemented.');
     }
     deleteFile?(path: string): void {
-        throw new Error('deleteFile Method not implemented.');
+        throw new Error('System.deleteFile Method not implemented.');
     }
     createHash?(data: string): string {
-        throw new Error('createHash Method not implemented.');
+        throw new Error('System.createHash Method not implemented.');
     }
     createSHA256Hash?(data: string): string {
-        throw new Error('createSHA256Hash Method not implemented.');
+        throw new Error('System.createSHA256Hash Method not implemented.');
     }
     getMemoryUsage?(): number {
         throw new Error('getMemoryUsage Method not implemented.');
@@ -272,24 +279,23 @@ class System implements ts.System {
         throw new Error('exit Method not implemented.');
     }
     realpath?(path: string): string {
-        let realpath = this.inner.realpath ? this.inner.realpath(path) : path;
-        console.log("System.realpath: ", path, realpath);
-        return realpath;
+        console.log("System.realpath: ", path);
+        return path;
     }
     setTimeout?(callback: (...args: any[]) => void, ms: number, ...args: any[]) {
-        throw new Error('setTimeout Method not implemented.');
+        throw new Error('System.setTimeout Method not implemented.');
     }
     clearTimeout?(timeoutId: any): void {
-        throw new Error('clearTimeout Method not implemented.');
+        throw new Error('System.clearTimeout Method not implemented.');
     }
     clearScreen?(): void {
-        throw new Error('clearScreen Method not implemented.');
+        throw new Error('System.clearScreen Method not implemented.');
     }
     base64decode?(input: string): string {
-        throw new Error('base64decode Method not implemented.');
+        throw new Error('System.base64decode Method not implemented.');
     }
     base64encode?(input: string): string {
-        throw new Error('base64encode Method not implemented.');
+        throw new Error('System.base64encode Method not implemented.');
     }
 }
 
