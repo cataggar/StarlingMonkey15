@@ -1,6 +1,8 @@
 package local:cowsay;
 
 world cowsay {
+  import wasi:filesystem/types@0.2.2;
+
   export test: func() -> string;
   export canvas: interface {
     resource compiler-options {
