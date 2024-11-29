@@ -2,6 +2,7 @@ package ts:typescript-system@0.1.0;
 
 interface system {
     get-current-directory: func() -> string;
+    get-arguments: func() -> list<string>;
 }
 
 world typescript-system {
