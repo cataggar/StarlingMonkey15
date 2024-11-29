@@ -22,3 +22,5 @@ wit/deps/
 **/*.wasm
 target/
 .vscode/
+deps/
+bindings.rs
