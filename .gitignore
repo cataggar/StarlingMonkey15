@@ -18,3 +18,5 @@ print-includes-ts/print-includes.js
 interfaces/
 wit.d.ts
 wit/deps/
+**/*.js
+**/*.wasm
