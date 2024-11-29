@@ -15,3 +15,6 @@ bin/
 *.wasm
 bun.lockb
 print-includes-ts/print-includes.js
+interfaces/
+wit.d.ts
+wit/deps/

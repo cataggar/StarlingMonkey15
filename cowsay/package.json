@@ -11,7 +11,7 @@
   "main": "dist/cowsay.js",
   "scripts": {
     "bundle": "bun run build.ts",
-    "componentize": "bunx jco componentize cowsay.js --wit src/cowsay.wit -o cowsay.wasm",
+    "componentize": "bunx jco componentize cowsay.js --wit ../wit -o cowsay.wasm",
     "wit": "bunx jco wit cowsay.wasm",
     "transpile": "bunx jco transpile cowsay.wasm -o dist",
     "build": "bun run bundle; bun run componentize; bun run transpile"

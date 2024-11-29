@@ -2,8 +2,9 @@
 import { promises as fs } from 'fs';
 
 // https://bun.sh/docs/bundler
-await Bun.build({
+let build = await Bun.build({
     entrypoints: ['./src/cowsay.ts'],
+    // entrypoints: ['./src/cowsay.js'],
     outdir: './',
     // minify: true,
     minify: false,
@@ -11,6 +12,11 @@ await Bun.build({
     // sourcemap: 'inline',
     sourcemap: 'none',
 });
+if (!build.success) {
+    console.error(build);
+    process.exit(1);
+}
+
 
 // Cannot access performance properties at pre-initialization time.
 // https://github.com/bytecodealliance/ComponentizeJS/issues/153

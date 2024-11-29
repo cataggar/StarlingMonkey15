@@ -1,13 +1,20 @@
 import * as ts from 'typescript';
-import * as fs from 'node:fs';
-// import * as process from 'process';
+// import { WasiFilesystemPreopens as preopens } from 'wasi-filesystem-preopens';
+import { filesystem as fs } from '@bytecodealliance/preview2-shim';
 
 export function test() {
 
     let tsa = ts as any;
     tsa.setSys(new System())
 
-    return "ok";
+    let dirs = fs.preopens.getDirectories();
+    // let concatDirs = dirs.map(dir => dir + "/").join(":");
+    // let concatDirs = dirs.map((descriptor, path) => path ).join(",");
+    let concatDirs = dirs.map(([descriptor, path]) => path ).join(",");
+
+    // return concatDirs;
+    return `dirs: ${concatDirs}`;
+    // return "not ok";
 }
 
 class CompilerOptions {
@@ -200,8 +207,9 @@ class System implements ts.System {
         return 120;
     }
     readFile(path: string, encoding?: string): string | undefined {
-        console.log("System.readFile ", path);
-        return fs.readFileSync(path, encoding as BufferEncoding || 'utf-8');
+        throw new Error('System.readFile Method not implemented.');
+        // console.log("System.readFile ", path);
+        // return fs.readFileSync(path, encoding as BufferEncoding || 'utf-8');
     }
     getFileSize?(path: string): number {
         throw new Error('System.getFileSize Method not implemented.');
@@ -221,15 +229,16 @@ class System implements ts.System {
         throw new Error('resolvePath Method not implemented.');
     }
     fileExists(path: string): boolean {
-        let fileExists = fs.existsSync(path);
-        console.log("System.fileExists ", path, fileExists);
-        return fileExists;
-
+        throw new Error('System.fileExists Method not implemented.');
+        // let fileExists = fs.existsSync(path);
+        // console.log("System.fileExists ", path, fileExists);
+        // return fileExists;
     }
     directoryExists(path: string): boolean {
-        let directoryExists = fs.existsSync(path);
-        console.log("System.directoryExists ", path, directoryExists);
-        return directoryExists;
+        throw new Error('System.directoryExists Method not implemented.');
+        // let directoryExists = fs.existsSync(path);
+        // console.log("System.directoryExists ", path, directoryExists);
+        // return directoryExists;
     }
     createDirectory(path: string): void {
         throw new Error('System.createDirectory Method not implemented.');
