@@ -1,0 +1,5 @@
+package test:app;
+
+world app {
+    import ts:typescript-system/system@0.1.0;
+}

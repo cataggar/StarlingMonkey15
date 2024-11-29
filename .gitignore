@@ -20,3 +20,5 @@ wit.d.ts
 wit/deps/
 **/*.js
 **/*.wasm
+target/
+.vscode/
