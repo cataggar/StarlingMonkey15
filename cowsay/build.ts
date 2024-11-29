@@ -11,6 +11,8 @@ let build = await Bun.build({
     format: 'esm',
     // sourcemap: 'inline',
     sourcemap: 'none',
+    // target: 'browser', // default
+    target: 'node',
 });
 if (!build.success) {
     console.error(build);
