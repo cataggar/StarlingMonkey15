@@ -10,6 +10,9 @@ impl bindings::exports::ts::typescript_system::system::Guest for System {
     fn get_arguments() -> Vec<String> {
         environment::get_arguments()
     }
+    fn get_environment() -> Vec<(String, String)> {
+        environment::get_environment()
+    }
 }
 
 bindings::export!(System with_types_in bindings);
