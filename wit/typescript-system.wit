@@ -1,0 +1,7 @@
+package ts:typescript-system@0.1.0;
+  
+world typescript-system {
+    resource system {
+        get-current-directory: func() -> string;
+    }
+}

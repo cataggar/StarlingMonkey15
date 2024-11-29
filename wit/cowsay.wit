@@ -1,11 +1,31 @@
-package local:cowsay;
+// package local:cowsay;
+package ts:typescript@0.1.0;
 
-world cowsay {
+// export interface ts-system {
+//   get-current-directory: func() -> string;
+// }
+
+interface ts-system {
+  get-current-directory: func() -> string;
+}
+
+world typescript {
   // import wasi:filesystem/preopens@0.2.2;
   // import wasi:filesystem/types@0.2.2;
+  // import ts:typescript-system;
+
+  // use ts:typescript.{ts-system};
+  // use wasi:io/streams@0.2.2.{input-stream, output-stream, error};
+  use ts:typescript-system/typescript-system@0.1.0.{system};
+
+  export set-sys: func(sys: ts-system) -> void;
 
   export test: func() -> string;
+
   export canvas: interface {
+
+    set-sys: func(sys: ts-system) -> void;
+
     resource compiler-options {
       create: static func() -> compiler-options;
     }

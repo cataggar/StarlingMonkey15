@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 // import { WasiFilesystemPreopens as preopens } from 'wasi-filesystem-preopens';
-import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
+// import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
 
 // Convert a string to a Uint8Array using TextEncoder
 function stringToBytes(str: string): Uint8Array {
@@ -10,26 +10,26 @@ function stringToBytes(str: string): Uint8Array {
 
 export function test() {
 
-    let tsa = ts as any;
-    tsa.setSys(new System())
+    // let tsa = ts as any;
+    // tsa.setSys(new System())
 
-    let dirs = fs.preopens.getDirectories();
+    // let dirs = fs.preopens.getDirectories();
     // let concatDirs = dirs.map(dir => dir + "/").join(":");
     // let concatDirs = dirs.map((descriptor, path) => path ).join(",");
-    let concatDirs = dirs.map(([descriptor, path]) => path ).join(",");
+    // let concatDirs = dirs.map(([descriptor, path]) => path ).join(",");
 
-    let cwd = cli.environment.initialCwd();
+    // let cwd = cli.environment.initialCwd();
     // cli.terminalStdout.write(`dirs: ${concatDirs}\n`);
     // cli.terminalOutput.write(`dirs: ${concatDirs}\n`);
     // cli.terminalStdout.getTerminalStdout()?.write(`dirs: ${concatDirs}\n`);
-    let stdout = cli.stdout.getStdout();
+    // let stdout = cli.stdout.getStdout();
     // stdout.write(new TextEncoder().encode(`dirs: ${concatDirs}\n`));
-    stdout.write(stringToBytes(`cwd: ${cwd}\n`));
-    stdout.write(stringToBytes(`Is this another line?\n`));
+    // stdout.write(stringToBytes(`cwd: ${cwd}\n`));
+    // stdout.write(stringToBytes(`Is this another line?\n`));
 
     // return concatDirs;
-    return `dirs: ${concatDirs}`;
-    // return "not ok";
+    // return `dirs: ${concatDirs}`;
+    return "ok";
 }
 
 class CompilerOptions {

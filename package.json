@@ -6,6 +6,7 @@
         "cowsay-test"
     ],
     "scripts": {
-        "build": "npm -w cowsay run build; npm -w cowsay-test run build"
+        "build": "npm -w cowsay run build; npm -w cowsay-test run build",
+        "types": "bunx jco types wit -o ."
     }
 }

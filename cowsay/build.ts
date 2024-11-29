@@ -12,7 +12,7 @@ let build = await Bun.build({
     // sourcemap: 'inline',
     sourcemap: 'none',
     // target: 'browser', // default
-    target: 'node',
+    // target: 'node',
 });
 if (!build.success) {
     console.error(build);
