@@ -5,26 +5,21 @@ package ts:typescript@0.1.0;
 //   get-current-directory: func() -> string;
 // }
 
-interface ts-system {
-  get-current-directory: func() -> string;
-}
+// interface ts-system {
+//   get-current-directory: func() -> string;
+// }
 
 world typescript {
-  // import wasi:filesystem/preopens@0.2.2;
-  // import wasi:filesystem/types@0.2.2;
-  // import ts:typescript-system;
+  import ts:typescript-system/system@0.1.0;
+  use ts:typescript-system/system@0.1.0.{system};
 
-  // use ts:typescript.{ts-system};
-  // use wasi:io/streams@0.2.2.{input-stream, output-stream, error};
-  use ts:typescript-system/typescript-system@0.1.0.{system};
-
-  export set-sys: func(sys: ts-system) -> void;
+  // export set-sys: func(sys: system);
 
   export test: func() -> string;
 
   export canvas: interface {
 
-    set-sys: func(sys: ts-system) -> void;
+    // set-sys: func(sys: system) -> void;
 
     resource compiler-options {
       create: static func() -> compiler-options;
