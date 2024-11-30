@@ -10,10 +10,10 @@ package ts:typescript@0.1.0;
 // }
 
 world typescript {
-  import ts:typescript-system/system@0.1.0;
-  use ts:typescript-system/system@0.1.0.{system};
+  import ts:typescript-system/ts@0.1.0;
+  use ts:typescript-system/ts@0.1.0.{system};
 
-  // export set-sys: func(sys: system);
+  export set-sys: func(sys: system);
 
   export test: func() -> string;
 
