@@ -1,9 +1,10 @@
 {
+  // "include": ["src/**/*.ts", "../typescript/dist/**/*.ts"],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "moduleResolution": "node",
-    "outDir": "./",
+    // "outDir": "./",
     "target": "ES2023",
     "removeComments": true,
     "esModuleInterop": true,
@@ -11,7 +12,8 @@
     "strict": true,
     "skipLibCheck": true,
     "paths": {
-      "cowsay": ["../cowsay/dist"]
-    }
+      "cowsay": ["../typescript/dist/cowsay.d.ts"],
+    },
+    "baseUrl": "."
   }
 }

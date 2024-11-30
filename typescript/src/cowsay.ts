@@ -1,6 +1,10 @@
 import * as ts from 'typescript';
-// import { WasiFilesystemPreopens as preopens } from 'wasi-filesystem-preopens';
+import { TsTypescriptSystemTs as tssystem } from 'ts-typescript-system-ts';
 // import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
+
+export function setSys(sys: tssystem.System) {
+    (ts as any).setSys(new System(sys));
+}
 
 // Convert a string to a Uint8Array using TextEncoder
 function stringToBytes(str: string): Uint8Array {
@@ -9,10 +13,6 @@ function stringToBytes(str: string): Uint8Array {
 }
 
 export function test() {
-
-    // let tsa = ts as any;
-    // tsa.setSys(new System())
-
     // let dirs = fs.preopens.getDirectories();
     // let concatDirs = dirs.map(dir => dir + "/").join(":");
     // let concatDirs = dirs.map((descriptor, path) => path ).join(",");
@@ -206,6 +206,8 @@ class System implements ts.System {
     public readonly newLine: string = "\n";
     public readonly useCaseSensitiveFileNames = true;
 
+    constructor(private inner: tssystem.System) {}
+
     write(message: string): void {
         throw new Error('System.write Method not implemented.');
         // console.log("System.write ", message);
@@ -267,10 +269,9 @@ class System implements ts.System {
     }
     getCurrentDirectory(): string {
         // throw new Error('System.getCurrentDirectory Method not implemented.');
-        // let currentDirectory = this.inner.getCurrentDirectory();
-        // console.log("System.getCurrentDirectory: ", currentDirectory);
-        // return currentDirectory;
-        return "";
+        let currentDirectory = this.inner.getCurrentDirectory();
+        console.log("System.getCurrentDirectory: ", currentDirectory);
+        return currentDirectory;
     }
     getDirectories(path: string): string[] {
         throw new Error('System.getDirectories Method not implemented.');

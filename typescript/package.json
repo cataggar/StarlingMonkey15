@@ -10,11 +10,13 @@
   "type": "module",
   "main": "dist/cowsay.js",
   "scripts": {
+    "types": "bunx jco types wit -o .",
+    "build": "bun run bundle; bun run componentize; bun run transpile",
     "bundle": "bun run build.ts",
-    "componentize": "bunx jco componentize cowsay.js --wit ../wit -o cowsay.wasm",
-    "wit": "bunx jco wit cowsay.wasm",
+    "componentize": "bunx jco componentize cowsay.js --wit wit -o cowsay.wasm",
+    "plug": "wac plug cowsay.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o cowsay2.wasm",
     "transpile": "bunx jco transpile cowsay.wasm -o dist",
-    "build": "bun run bundle; bun run componentize; bun run transpile"
+    "wit": "bunx jco wit cowsay.wasm"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.8.1",

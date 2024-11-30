@@ -1,5 +1,6 @@
 
 import { test, canvas } from 'cowsay';
+// import { test, canvas } from '../../typescript/dist/cowsay';
 
 console.log("test returns", test());  // sets the TS System
 
