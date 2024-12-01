@@ -1,34 +1,29 @@
-// package local:cowsay;
 package ts:typescript@0.1.0;
 
-// export interface ts-system {
-//   get-current-directory: func() -> string;
-// }
-
-// interface ts-system {
-//   get-current-directory: func() -> string;
-// }
-
-world typescript {
+world root {
   import ts:typescript-system/ts@0.1.0;
-  use ts:typescript-system/ts@0.1.0.{system};
 
-  export set-sys: func(sys: system);
+  // to satisfy jco componentize
+  import wasi:http/types@0.2.2;
+  import wasi:http/outgoing-handler@0.2.2;
+  import wasi:random/random@0.2.2;
+  
+  export typescript: interface {
 
-  export test: func() -> string;
+    // use ts:typescript-system/ts@0.1.0.{system};
 
-  export canvas: interface {
+    set-sys: func();
 
-    // set-sys: func(sys: system) -> void;
+    test: func();
 
-    resource compiler-options {
-      create: static func() -> compiler-options;
-    }
+    // resource compiler-options {
+    //   create: static func() -> compiler-options;
+    // }
 
     // create-program: func(options: borrow<compiler-options>) -> program;
-    create-program: func(options: compiler-options) -> program;
+    // create-program: func(options: compiler-options) -> program;
 
-    resource program {
-    }
+    // resource program {
+    // }
   }
 }

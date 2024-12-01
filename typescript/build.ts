@@ -26,6 +26,8 @@ if (!build.success) {
 // https://github.com/microsoft/TypeScript/blob/main/src/compiler/performanceCore.ts
 let js = await fs.readFile('cowsay.js', 'utf8');
 js = js.replace('function tryGetPerformanceHooks() {', 'function tryGetPerformanceHooks() { return;');
+// Another workaround. Not sure why it is being added by the bundler.
+js = js.replace('export { System };', '');
 await fs.writeFile('cowsay.js', js, 'utf8');
 
 export {};

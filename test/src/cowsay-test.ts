@@ -1,8 +1,10 @@
 
-import { test, canvas } from 'cowsay';
+import { typescript } from 'ts-typescript';
 // import { test, canvas } from '../../typescript/dist/cowsay';
 
-console.log("test returns", test());  // sets the TS System
+typescript.setSys();
+
+console.log("test returns", typescript.test());  // sets the TS System
 
 // let options = canvas.CompilerOptions.create();
 // console.log("options created", options);

@@ -1,10 +1,19 @@
 import * as ts from 'typescript';
-import { TsTypescriptSystemTs as tssystem } from 'ts-typescript-system-ts';
+// import { TsTypescriptSystemTs as tssystem } from 'ts-typescript-system-ts';
+import { System as TsSystem } from 'ts-typescript-system-ts';
 // import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
+// import { TsTypescriptSystemTs } from './interfaces/ts-typescript-system-ts';
+// import { typescript } from './wit.js';
+// import { typescript } from './wit.js';
 
-export function setSys(sys: tssystem.System) {
-    (ts as any).setSys(new System(sys));
+// let sys = new tssystem.System();
+
+export function setSys() {
+    (ts as any).setSys(new System(new TsSystem()));
 }
+// function setSys() {
+//     (ts as any).setSys(new System(new tssystem.System()));
+// }
 
 // Convert a string to a Uint8Array using TextEncoder
 function stringToBytes(str: string): Uint8Array {
@@ -12,7 +21,7 @@ function stringToBytes(str: string): Uint8Array {
     return encoder.encode(str);
 }
 
-export function test() {
+function test() {
     // let dirs = fs.preopens.getDirectories();
     // let concatDirs = dirs.map(dir => dir + "/").join(":");
     // let concatDirs = dirs.map((descriptor, path) => path ).join(",");
@@ -206,7 +215,7 @@ class System implements ts.System {
     public readonly newLine: string = "\n";
     public readonly useCaseSensitiveFileNames = true;
 
-    constructor(private inner: tssystem.System) {}
+    constructor(private inner: TsSystem) {}
 
     write(message: string): void {
         throw new Error('System.write Method not implemented.');
@@ -377,7 +386,7 @@ function getPreEmitDiagnostics(program: Program): Diagnostic[] {
     return diagnostics.map(diagnostic => new Diagnostic(diagnostic));
 }
 
-export const canvas = {
+const canvas = {
     tsVersion,
     CompilerOptions,
     nodeFactory,
@@ -397,3 +406,8 @@ export const canvas = {
     createProgram,
     getPreEmitDiagnostics,
 };
+
+export const typescript = {
+    setSys,
+    test,
+}
