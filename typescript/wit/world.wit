@@ -1,5 +1,23 @@
 package ts:typescript@0.1.0;
 
+interface typescript {
+    // use ts:typescript-system/ts@0.1.0.{system};
+
+    set-sys: func();
+
+    test: func() -> string;
+
+    resource compiler-options {
+      new: static func() -> compiler-options;
+    }
+
+    // create-program: func(options: borrow<compiler-options>) -> program;
+    create-program: func(options: compiler-options) -> program;
+
+    resource program {
+    }
+}
+
 world root {
   import ts:typescript-system/ts@0.1.0;
 
@@ -8,22 +26,5 @@ world root {
   import wasi:http/outgoing-handler@0.2.2;
   import wasi:random/random@0.2.2;
   
-  export typescript: interface {
-
-    // use ts:typescript-system/ts@0.1.0.{system};
-
-    set-sys: func();
-
-    test: func() -> string;
-
-    // resource compiler-options {
-    //   create: static func() -> compiler-options;
-    // }
-
-    // create-program: func(options: borrow<compiler-options>) -> program;
-    // create-program: func(options: compiler-options) -> program;
-
-    // resource program {
-    // }
-  }
+  export typescript;
 }

@@ -13,10 +13,11 @@
     "types": "bunx jco types wit -o src",
     "build": "bun run bundle; bun run componentize; bun run plug; bun run transpile",
     "bundle": "bun run build.ts",
-    "componentize": "bunx jco componentize cowsay.js --wit wit -o cowsay.wasm",
+    "componentize": "bunx jco componentize cowsay.js --wit wit -o cowsay.wasm -d all",
     "plug": "wac plug cowsay.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm",
     "transpile": "bunx jco transpile ts-typescript.wasm -o dist",
-    "wit": "bunx jco wit ts-typescript.wasm"
+    "wit": "bunx jco wit cowsay.wasm",
+    "wit2": "bunx jco wit ts-typescript.wasm"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.8.1",

@@ -6,11 +6,12 @@ typescript.setSys();
 
 console.log("test returns", typescript.test());  // sets the TS System
 
-// let options = canvas.CompilerOptions.create();
-// console.log("options created", options);
+let options = typescript.CompilerOptions.new();
+console.log("options created", options);
 
-// console.log("call createProgram");
-// // let program = canvas.createProgram(["abc.ts"], options, compilerHost);
-// // let program = canvas.createProgram(options, compilerHost);
-// let program = canvas.createProgram(options);
+console.log("call createProgram");
+// let program = typescript.createProgram(["abc.ts"], options, compilerHost);
+// let program = typescript.createProgram(options, compilerHost);
+let program = typescript.createProgram(options);
+
 

@@ -1,6 +1,7 @@
 import * as ts from 'typescript';
 // import { TsTypescriptSystemTs as tssystem } from 'ts-typescript-system-ts';
-import { System as TsSystem } from 'ts-typescript-system-ts';
+// import { System as TsSystem } from 'ts-typescript-system-ts';
+import { System } from 'ts-typescript-system-ts';
 // import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
 // import { TsTypescriptSystemTs } from './interfaces/ts-typescript-system-ts';
 // import { typescript } from './wit.js';
@@ -9,7 +10,7 @@ import { System as TsSystem } from 'ts-typescript-system-ts';
 // let sys = new tssystem.System();
 
 export function setSys() {
-    (ts as any).setSys(new System(new TsSystem()));
+    (ts as any).setSys(new System2(new System()));
 }
 // function setSys() {
 //     (ts as any).setSys(new System(new tssystem.System()));
@@ -43,14 +44,12 @@ function test() {
 
 class CompilerOptions {
     private readonly _inner: ts.CompilerOptions;
-    // constructor() {
-    //     this._inner = new Object() as ts.CompilerOptions;
-    // }
+
     constructor(inner: ts.CompilerOptions) {
         this._inner = inner;
     }
 
-    static create() {
+    static new() {
         return new CompilerOptions(new Object() as ts.CompilerOptions);
     }
 
@@ -209,7 +208,7 @@ function nodeFactory() {
 
 // https://github.com/microsoft/TypeScript/blob/main/src/harness/fakesHosts.ts
 
-class System implements ts.System {
+class System2 implements ts.System {
     public readonly args: string[] = [];
     public readonly output: string[] = [];
     public readonly newLine: string = "\n";
@@ -277,7 +276,9 @@ class System implements ts.System {
         return "";
     }
     getCurrentDirectory(): string {
+        console.log("System.getCurrentDirectory");
         // throw new Error('System.getCurrentDirectory Method not implemented.');
+        console.log("inner", this.inner);
         let currentDirectory = this.inner.getCurrentDirectory();
         console.log("System.getCurrentDirectory: ", currentDirectory);
         return currentDirectory;
@@ -386,7 +387,9 @@ function getPreEmitDiagnostics(program: Program): Diagnostic[] {
     return diagnostics.map(diagnostic => new Diagnostic(diagnostic));
 }
 
-const canvas = {
+export const typescript = {
+    setSys,
+    test,
     tsVersion,
     CompilerOptions,
     nodeFactory,
@@ -405,9 +408,4 @@ const canvas = {
     TypeChecker,
     createProgram,
     getPreEmitDiagnostics,
-};
-
-export const typescript = {
-    setSys,
-    test,
 }
