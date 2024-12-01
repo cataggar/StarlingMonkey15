@@ -2,10 +2,6 @@
     "name": "starling-monkey-15",
     "private": true,
     "workspaces": [
-        "cowsay",
-        "cowsay-test"
-    ],
-    "scripts": {
-        "build": "npm -w cowsay run build; npm -w cowsay-test run build"
-    }
+        "typescript"
+    ]
 }

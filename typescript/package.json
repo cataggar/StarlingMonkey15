@@ -1,6 +1,6 @@
 {
-  "name": "cowsay",
-  "version": "1.0.0",
+  "name": "ts-typescript",
+  "version": "0.1.0",
   "author": "",
   "license": "MIT",
   "description": "",
@@ -10,14 +10,13 @@
   "type": "module",
   "main": "dist/ts-typescript.js",
   "scripts": {
+    "wkg": "wkg wit fetch",
+    "build": "bun run types && bun run bundle && bun run componentize",
     "types": "bunx jco types wit -o .",
-    "build": "bun run bundle; bun run componentize",
     "build-js": "bun run bundle; bun run componentize; bun run plug; bun run transpile",
     "bundle": "bun run build.ts",
-    "componentize": "bunx jco componentize cowsay.js --wit wit -o cowsay.wasm -d all",
+    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all",
     "plug": "wac plug cowsay.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm",
-    "transpile": "bunx jco transpile ts-typescript.wasm -o dist",
-    "wit": "bunx jco wit cowsay.wasm",
     "wit2": "bunx jco wit ts-typescript.wasm"
   },
   "devDependencies": {

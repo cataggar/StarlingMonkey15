@@ -1,14 +1,12 @@
 package ts:typescript-system@0.1.0;
 
-interface typescript-system {
+interface types {
     resource system {
-        get-current-directory: func() -> string;
         get-arguments: func() -> list<string>;
-        get-environment: func() -> list<tuple<string, string>>;
     }
 }
 
 world root {
     import wasi:cli/environment@0.2.2;
-    export typescript-system;
+    export types;
 }

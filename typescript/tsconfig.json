@@ -1,9 +1,7 @@
 {
-  // "include": ["src/**/*.ts", "interfaces/**/*.ts"],
   "include": ["src/**/*.ts", "interfaces/**/*.ts", "wit.d.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    // "outDir": "./",
     "typeRoots": ["./node_modules/@types"],
     "target": "ES2023",
     "removeComments": true,
@@ -14,10 +12,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-    //   "wasi-filesystem-preopens": ["interfaces/wasi-filesystem-preopens.d.ts"]
-      // "ts-typescript-system-ts": ["interfaces/ts-typescript-system-ts.d.ts"]
       // "wit": ["wit.js"]
-      "ts-typescript-system-typescript-system": ["interfaces/ts-typescript-system-typescript-system.d.ts"]
+      // "ts-typescript-system-typescript-system": ["interfaces/ts-typescript-system-typescript-system.d.ts"]
     }
   }
 }

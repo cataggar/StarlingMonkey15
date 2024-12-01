@@ -1,13 +1,8 @@
-# StarlingMonkey15
-https://github.com/bytecodealliance/StarlingMonkey/issues/15
+# Mixing Components
 
-I'm using [Nushell](https://www.nushell.sh/) as the NPM script-shell, but should work with other Unix shells. Nushell works on Windows too. On my Mac:
-```
-npm config set script-shell /opt/homebrew/bin/nu
-```
+There are three components.
 
-To reproduce:
-```
-npm ci
-npm run build
-```
+1. `typescript-system` component in Rust, defines a `system` resource with a function `get-arguments`.
+2. `typescript` component in TypeScript, defines a `program` resource with a function`concat-arguments`.
+3. `test` component in Rust uses `concat-arguments` to print the arguments to stdout.
+
