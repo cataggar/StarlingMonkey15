@@ -14,7 +14,7 @@ world root {
 
     set-sys: func();
 
-    test: func();
+    test: func() -> string;
 
     // resource compiler-options {
     //   create: static func() -> compiler-options;
