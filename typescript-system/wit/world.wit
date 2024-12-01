@@ -1,6 +1,6 @@
 package ts:typescript-system@0.1.0;
 
-interface ts {
+interface typescript-system {
     resource system {
         get-current-directory: func() -> string;
         get-arguments: func() -> list<string>;
@@ -8,7 +8,7 @@ interface ts {
     }
 }
 
-world typescript-system {
+world root {
     import wasi:cli/environment@0.2.2;
-    export ts;
+    export typescript-system;
 }

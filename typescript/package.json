@@ -10,8 +10,9 @@
   "type": "module",
   "main": "dist/ts-typescript.js",
   "scripts": {
-    "types": "bunx jco types wit -o src",
-    "build": "bun run bundle; bun run componentize; bun run plug; bun run transpile",
+    "types": "bunx jco types wit -o .",
+    "build": "bun run bundle; bun run componentize",
+    "build-js": "bun run bundle; bun run componentize; bun run plug; bun run transpile",
     "bundle": "bun run build.ts",
     "componentize": "bunx jco componentize cowsay.js --wit wit -o cowsay.wasm -d all",
     "plug": "wac plug cowsay.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm",

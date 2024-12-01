@@ -1,16 +1,26 @@
+// import { TsTypescriptSystemTs } from 'ts-typescript-system-ts';
 import * as ts from 'typescript';
-// import { TsTypescriptSystemTs as tssystem } from 'ts-typescript-system-ts';
+import { TsTypescriptSystemTypescriptSystem as tssystem } from 'ts-typescript-system-typescript-system';
 // import { System as TsSystem } from 'ts-typescript-system-ts';
-import { System } from 'ts-typescript-system-ts';
+// import { System } from 'ts-typescript-system-ts';
+// import { TsTypescriptSystemTs as tssystem } from 'wit';
 // import { filesystem as fs, cli } from '@bytecodealliance/preview2-shim';
 // import { TsTypescriptSystemTs } from './interfaces/ts-typescript-system-ts';
 // import { typescript } from './wit.js';
 // import { typescript } from './wit.js';
+import * as wit from 'wit.js';
+// import { ts as tss } from 'wit';
+// import TsSystem = TsTypescriptSystemTs.System
+import TsSystem = tssystem.System;
+
+export const typescriptSystem = wit.typescriptSystem;
 
 // let sys = new tssystem.System();
 
+// wit.typescriptSystem.setSys(new wit.System2(new wit.System()));
+
 export function setSys() {
-    (ts as any).setSys(new System2(new System()));
+    // (ts as any).setSys(new System2(new wit.ts.System()));
 }
 // function setSys() {
 //     (ts as any).setSys(new System(new tssystem.System()));
@@ -214,7 +224,7 @@ class System2 implements ts.System {
     public readonly newLine: string = "\n";
     public readonly useCaseSensitiveFileNames = true;
 
-    constructor(private inner: System) {}
+    constructor(private inner: TsSystem) {}
 
     write(message: string): void {
         throw new Error('System.write Method not implemented.');
@@ -386,6 +396,8 @@ function getPreEmitDiagnostics(program: Program): Diagnostic[] {
     let diagnostics = ts.getPreEmitDiagnostics(program.inner());
     return diagnostics.map(diagnostic => new Diagnostic(diagnostic));
 }
+
+// export const typescriptSystem = wit.typescriptSystem;
 
 export const typescript = {
     setSys,

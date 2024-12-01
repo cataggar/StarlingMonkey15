@@ -1,5 +1,6 @@
 {
-  "include": ["src/**/*.ts", "interfaces/**/*.ts"],
+  // "include": ["src/**/*.ts", "interfaces/**/*.ts"],
+  "include": ["src/**/*.ts", "interfaces/**/*.ts", "wit.d.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     // "outDir": "./",
@@ -14,7 +15,9 @@
     "baseUrl": ".",
     "paths": {
     //   "wasi-filesystem-preopens": ["interfaces/wasi-filesystem-preopens.d.ts"]
-      "ts-typescript-system-ts": ["src/interfaces/ts-typescript-system-ts.d.ts"]
+      // "ts-typescript-system-ts": ["interfaces/ts-typescript-system-ts.d.ts"]
+      // "wit": ["wit.js"]
+      "ts-typescript-system-typescript-system": ["interfaces/ts-typescript-system-typescript-system.d.ts"]
     }
   }
 }

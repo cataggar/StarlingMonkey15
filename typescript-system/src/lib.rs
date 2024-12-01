@@ -1,6 +1,6 @@
 mod bindings;
 use bindings::wasi::cli::environment;
-use bindings::exports::ts::typescript_system::ts::{Guest, GuestSystem};
+use bindings::exports::ts::typescript_system::typescript_system::{Guest, GuestSystem};
 
 struct Component;
 

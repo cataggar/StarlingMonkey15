@@ -11,7 +11,6 @@ interface typescript {
       new: static func() -> compiler-options;
     }
 
-    // create-program: func(options: borrow<compiler-options>) -> program;
     create-program: func(options: compiler-options) -> result<program, string>;
 
     resource program {
@@ -19,12 +18,17 @@ interface typescript {
 }
 
 world root {
-  import ts:typescript-system/ts@0.1.0;
+  // import ts:typescript-system/ts@0.1.0;
+  // use ts:typescript-system/ts@0.1.0.{system};
+  // export ts:typescript-system/ts@0.1.0;
+  // include ts:typescript-system/root@0.1.0;
+  import ts:typescript-system/typescript-system@0.1.0;
 
   // to satisfy jco componentize
   import wasi:http/types@0.2.2;
   import wasi:http/outgoing-handler@0.2.2;
   import wasi:random/random@0.2.2;
   
+  // export system;
   export typescript;
 }
