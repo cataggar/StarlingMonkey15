@@ -1,7 +1,7 @@
 mod bindings;
 use bindings::ts::typescript::typescript::*;
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     set_sys();
     let compiler_options = CompilerOptions::new();
     println!("compiler options: {:?}", compiler_options);
@@ -11,6 +11,9 @@ fn main() {
     // println!("arguments: {:?}", system::get_arguments());
     // println!("environment: {:?}", system::get_environment());
 
-    let compiler_host = create_program(compiler_options);
-    println!("compiler host: {:?}", compiler_host);
+    match create_program(compiler_options) {
+        Ok(_program) => println!("create program success"),
+        Err(e) => println!("create program failed: {:?}", e),
+    }
+    Ok(())
 }

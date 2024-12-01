@@ -214,7 +214,7 @@ class System2 implements ts.System {
     public readonly newLine: string = "\n";
     public readonly useCaseSensitiveFileNames = true;
 
-    constructor(private inner: TsSystem) {}
+    constructor(private inner: System) {}
 
     write(message: string): void {
         throw new Error('System.write Method not implemented.');

@@ -12,7 +12,7 @@ interface typescript {
     }
 
     // create-program: func(options: borrow<compiler-options>) -> program;
-    create-program: func(options: compiler-options) -> program;
+    create-program: func(options: compiler-options) -> result<program, string>;
 
     resource program {
     }
