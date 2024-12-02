@@ -17,6 +17,22 @@ cd StarlingMonkey15
 git checkout rs-ts-rs
 ```
 
+## Required Tools
+
+Required tools are bun, wkg, wac, wasmtime.
+
+https://bun.sh/docs/installation
+curl -fsSL https://bun.sh/install | bash
+
+https://github.com/bytecodealliance/wasm-pkg-tools
+cargo install wkg
+
+https://github.com/bytecodealliance/wac
+cargo install wac-cli
+
+https://wasmtime.dev/
+curl https://wasmtime.dev/install.sh -sSf | bash
+
 ## Building
 
 ```
