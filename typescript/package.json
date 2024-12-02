@@ -13,8 +13,7 @@
     "wkg": "wkg wit fetch",
     "types": "bunx jco types wit -o .",
     "bundle": "bun run bundle.ts",
-    "componentize": "bunx jco componentize world.js --wit wit -o component.wasm -d all",
-    "plug": "wac plug component.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm"
+    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.8.1",

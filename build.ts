@@ -16,11 +16,10 @@ await runScript("typescript", "wkg");
 await runScript("typescript", "types");
 await runScript("typescript", "bundle");
 await runScript("typescript", "componentize");
-// await runScript("typescript", "plug");
 
 await runScript("test-rs", "wkg");
 await runScript("test-rs", "cargo");
-// await runScript("test-rs", "plug");
+await runScript("test-rs", "plug");
 await runScript("test-rs", "run");
 
 export {};
