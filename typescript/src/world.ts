@@ -1,12 +1,15 @@
-// import { TsTypescriptSystemTypescriptSystem as tssystem } from 'ts-typescript-system-typescript-system';
-// import TsSystem = tssystem.System;
+import { TsTypescriptSystemTypes as tssystem } from 'ts-typescript-system-types';
+import TsSystem = tssystem.System;
 
 class Program {
-    constructor(){}
+    readonly system: TsSystem;
+    constructor(){
+        this.system = new TsSystem();
+    }
     // constructor(public system: TsSystem){}
     concatArguments() {
-        return "todo";
-        // return this.system.getArguments().concat("__");
+        // return "todo";
+        return this.system.getArguments().concat("__");
     }
 }
 
