@@ -11,13 +11,10 @@
   "main": "dist/ts-typescript.js",
   "scripts": {
     "wkg": "wkg wit fetch",
-    "build": "bun run types && bun run bundle && bun run componentize",
     "types": "bunx jco types wit -o .",
-    "build-js": "bun run bundle; bun run componentize; bun run plug; bun run transpile",
-    "bundle": "bun run build.ts",
-    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all",
-    "plug": "wac plug cowsay.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm",
-    "wit2": "bunx jco wit ts-typescript.wasm"
+    "bundle": "bun run bundle.ts",
+    "componentize": "bunx jco componentize world.js --wit wit -o component.wasm -d all",
+    "plug": "wac plug component.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm -o ts-typescript.wasm"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.8.1",

@@ -1,19 +1,11 @@
 mod bindings;
-use bindings::ts::typescript::typescript::*;
+use bindings::ts::typescript::typescript::Program;
 
 fn main() -> anyhow::Result<()> {
-    set_sys();
-    let compiler_options = CompilerOptions::new();
-    println!("compiler options: {:?}", compiler_options);
 
-    // let sys = System::new();
-    // println!("current directory: {:?}", system::get_current_directory());
-    // println!("arguments: {:?}", system::get_arguments());
-    // println!("environment: {:?}", system::get_environment());
+    let program = Program::new();
+    let all_args = program.concat_arguments();
+    println!("all arguments: {all_args}");
 
-    match create_program(compiler_options) {
-        Ok(_program) => println!("create program success"),
-        Err(e) => println!("create program failed: {:?}", e),
-    }
     Ok(())
 }

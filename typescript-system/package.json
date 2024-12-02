@@ -1,0 +1,11 @@
+{
+  "name": "ts-typescript-system",
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "wkg": "wkg wit fetch",
+    "cargo": "cargo component build"}
+}

@@ -2,6 +2,8 @@
     "name": "starling-monkey-15",
     "private": true,
     "workspaces": [
-        "typescript"
+        "typescript-system",
+        "typescript",
+        "test-rs"
     ]
 }
