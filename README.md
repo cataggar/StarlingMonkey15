@@ -19,19 +19,15 @@ git checkout rs-ts-rs
 
 ## Required Tools
 
-Required tools are bun, wkg, wac, wasmtime.
+Required tools are [bun](https://bun.sh/docs/installation), [wkg](https://github.com/bytecodealliance/wasm-pkg-tools), [wac](https://github.com/bytecodealliance/wac), and [wasmtime](https://wasmtime.dev/).
 
-https://bun.sh/docs/installation
+Example installation on Mac or Linux:
+```
 curl -fsSL https://bun.sh/install | bash
-
-https://github.com/bytecodealliance/wasm-pkg-tools
 cargo install wkg
-
-https://github.com/bytecodealliance/wac
 cargo install wac-cli
-
-https://wasmtime.dev/
 curl https://wasmtime.dev/install.sh -sSf | bash
+```
 
 ## Building
 
