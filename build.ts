@@ -20,7 +20,7 @@ await runScript("typescript", "componentize");
 
 await runScript("test-rs", "wkg");
 await runScript("test-rs", "cargo");
-await runScript("test-rs", "plug");
+// await runScript("test-rs", "plug");
 await runScript("test-rs", "run");
 
 export {};
