@@ -1,11 +1,10 @@
 package ts:typescript@0.1.0;
 
 interface typescript {
-    // use ts:typescript-system/types@0.1.0.{system};
+    use ts:typescript-system/types@0.1.0.{system};
 
     resource program {
-      constructor();
-      // constructor(sys: system);
+      constructor(sys: system);
       concat-arguments: func() -> string;
     }
 }

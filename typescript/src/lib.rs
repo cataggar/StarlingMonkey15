@@ -13,9 +13,9 @@ struct Program{
 }
 
 impl GuestProgram for Program {
-    fn new() -> Self {
+    fn new(system: System) -> Self {
         Program {
-            system: System::new(),
+            system
         }
     }
     
