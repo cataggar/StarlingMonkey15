@@ -12,11 +12,5 @@ interface typescript {
 
 world root {
   import ts:typescript-system/types@0.1.0;
-  // export ts:typescript-system/types@0.1.0;
-
-  // to satisfy jco componentize
-  // import wasi:io/poll@0.2.2;
-  
-  // export system;
   export typescript;
 }
