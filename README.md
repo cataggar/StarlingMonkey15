@@ -14,7 +14,7 @@ I am having trouble getting the second component to use the first in [typescript
 ```
 git clone git@github.com:cataggar/StarlingMonkey15.git --no-checkout
 cd StarlingMonkey15
-git checkout rs-ts-rs
+git checkout jco534
 ```
 
 ## Required Tools
@@ -39,13 +39,13 @@ bun run build.ts
 ## Sample Build Output
 
 ```
-~/StarlingMonkey15> bun run build.ts
+~/ms/StarlingMonkey15> bun run build.ts
 $ wkg wit fetch
 
 $ cargo component build
   Generating bindings for typescript-system (src/bindings.rs)
    Compiling typescript-system v0.1.0 (/Users/cataggar/ms/StarlingMonkey15/typescript-system)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.50s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.61s
     Creating component target/wasm32-wasip1/debug/typescript_system.wasm
 
 $ wkg wit fetch
@@ -54,28 +54,27 @@ $ bunx jco types wit -o .
 
   Generated Type Files:
 
- - ./interfaces/ts-typescript-typescript.d.ts  0.17 KiB
- - ./interfaces/wasi-io-poll.d.ts              1.36 KiB
- - ./wit.d.ts                                  0.19 KiB
+ - ./interfaces/ts-typescript-system-types.d.ts  0.14 KiB
+ - ./interfaces/ts-typescript-typescript.d.ts    0.17 KiB
+ - ./interfaces/wasi-io-poll.d.ts                1.36 KiB
+ - ./wit.d.ts                                    0.28 KiB
 
 
 $ bun run bundle.ts
 
 $ bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all
-OK Successfully written ts-typescript.wasm.
+ComponentError: failed to encode a component from module
+$failed to decode world from module
 
-$ wkg wit fetch
-
-$ cargo component build
-  Generating bindings for test-rs (src/bindings.rs)
-   Compiling test-rs v0.1.0 (/Users/cataggar/ms/StarlingMonkey15/test-rs)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s
-    Creating component target/wasm32-wasip1/debug/test-rs.wasm
-
-$ wac plug target/wasm32-wasip1/debug/test-rs.wasm --plug ../typescript/ts-typescript.wasm -o target/test.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm
-
-$ wasmtime run target/test.wasm
-all arguments: todo
+Caused by:
+    0: module was not valid
+    1: failed to find export of interface `ts:typescript-system/types@0.1.0` function `[constructor]system`
+    at componentNew (file:///Users/cataggar/ms/StarlingMonkey15/node_modules/@bytecodealliance/jco/obj/wasm-tools.js:3618:11)
+    at componentNew (file:///Users/cataggar/ms/StarlingMonkey15/node_modules/@bytecodealliance/jco/src/api.js:37:10)
+    at async componentize (file:///Users/cataggar/ms/StarlingMonkey15/node_modules/@bytecodealliance/componentize-js/src/componentize.js:381:5)
+    at async componentize (file:///Users/cataggar/ms/StarlingMonkey15/node_modules/@bytecodealliance/jco/src/cmd/componentize.js:11:25)
+    at async file:///Users/cataggar/ms/StarlingMonkey15/node_modules/@bytecodealliance/jco/src/jco.js:200:9
+error: script "componentize" exited with code 1
+(jco componentize) 
+In 'typescript' script 'componentize' failed with exit code 1
 ```
-
-Notice the `todo`. When fixed, it should be result in `a__b__c` or whatever args are passed in.
