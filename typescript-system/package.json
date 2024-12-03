@@ -7,5 +7,6 @@
   "type": "module",
   "scripts": {
     "wkg": "wkg wit fetch",
-    "cargo": "cargo component build"}
+    "cargo": "cargo component build"
+  }
 }

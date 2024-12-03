@@ -11,14 +11,6 @@
   "main": "dist/ts-typescript.js",
   "scripts": {
     "wkg": "wkg wit fetch",
-    "types": "bunx jco types wit -o .",
-    "tsc": "bunx tsc",
-    "bundle": "bun run bundle.ts",
-    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
-  },
-  "devDependencies": {
-    "@bytecodealliance/jco": "1.8.1",
-    "@types/bun": "1.1.14",
-    "typescript": "5.7.2"
+    "cargo": "cargo component build"
   }
 }

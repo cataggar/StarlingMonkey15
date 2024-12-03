@@ -8,7 +8,7 @@
   "scripts": {
     "wkg": "wkg wit fetch",
     "cargo": "cargo component build",
-    "plug": "wac plug target/wasm32-wasip1/debug/test-rs.wasm --plug ../typescript/ts-typescript.wasm -o target/test.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm",
+    "plug": "wac plug target/wasm32-wasip1/debug/test-rs.wasm --plug ../typescript/target/wasm32-wasip1/debug/typescript.wasm -o target/test.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm",
     "run": "wasmtime run target/test.wasm a b c"
   }
 }

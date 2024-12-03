@@ -2,6 +2,7 @@ package ts:typescript-system@0.1.0;
 
 interface types {
     resource system {
+        constructor();
         get-arguments: func() -> list<string>;
     }
 }

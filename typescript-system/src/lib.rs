@@ -10,6 +10,9 @@ impl Guest for Component {
 
 struct System;
 impl GuestSystem for System {
+    fn new() -> Self {
+        System
+    }
     fn get_arguments(&self) -> Vec<String> {
         environment::get_arguments()
     }
