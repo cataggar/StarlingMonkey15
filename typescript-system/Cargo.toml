@@ -28,5 +28,3 @@ package = "ts:typescript-system"
 "wasi:filesystem" = { path = "wit/deps/wasi-filesystem-0.2.2/package.wit" }
 "wasi:sockets" = { path = "wit/deps/wasi-sockets-0.2.2/package.wit" }
 "wasi:random" = { path = "wit/deps/wasi-random-0.2.2/package.wit" }
-
-"ts:typescript-system" = { path = "../typescript-system/wit/world.wit" }

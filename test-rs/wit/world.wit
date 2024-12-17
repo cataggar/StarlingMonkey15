@@ -2,5 +2,4 @@ package test:app;
 
 world app {
     import ts:typescript/typescript@0.1.0;
-    // import ts:typescript-system/types@0.1.0;
 }

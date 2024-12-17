@@ -10,6 +10,6 @@
     "cargo": "cargo component build",
     "plug": "wac plug target/wasm32-wasip1/debug/test-rs.wasm -o target/test.wasm --plug ../typescript/ts-typescript.wasm",
     "plug2": "wac plug target/test.wasm -o target/test2.wasm --plug ../typescript-system/target/wasm32-wasip1/debug/typescript_system.wasm",
-    "run": "wasmtime run target/test2.wasm a b c"
+    "run": "WASMTIME_BACKTRACE_DETAILS=1 wasmtime run target/test2.wasm a b c"
   }
 }
