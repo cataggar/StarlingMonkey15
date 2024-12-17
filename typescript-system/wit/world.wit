@@ -4,6 +4,7 @@ interface types {
     resource system {
         constructor();
         get-arguments: func() -> list<string>;
+        hello: func() -> string;
     }
 }
 

@@ -1,2 +1,3 @@
 [overrides]
 "ts:typescript" = { path = "../typescript/wit" }
+"ts:typescript-system" = { path = "../typescript-system/wit" }
