@@ -17,7 +17,7 @@
     "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "1.8.1",
+    "@bytecodealliance/jco": "file:../../jco",
     "@types/bun": "1.1.14",
     "typescript": "5.7.2"
   }
