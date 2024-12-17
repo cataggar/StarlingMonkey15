@@ -17,7 +17,9 @@ impl GuestSystem for System {
         environment::get_arguments()
     }
     fn hello(&self) -> String {
-        "Hello from Rust!".to_string()
+        // "Hello from Rust!".to_string()
+        // return concatenated string
+        self.get_arguments().join(" ")
     }
 }
 
