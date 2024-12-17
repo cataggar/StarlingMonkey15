@@ -16,6 +16,9 @@ impl GuestSystem for System {
     fn get_arguments(&self) -> Vec<String> {
         environment::get_arguments()
     }
+    fn hello(&self) -> String {
+        "Hello from Rust!".to_string()
+    }
 }
 
 bindings::export!(Component with_types_in bindings);
