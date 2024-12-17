@@ -1,10 +1,19 @@
 package ts:typescript-system@0.1.0;
 
 interface types {
+
+    record args {
+        count: u8,
+        one: option<string>,
+        two: option<string>,
+        three: option<string>
+    }
+
     resource system {
         constructor();
         get-arguments: func() -> list<string>;
         hello: func() -> string;
+        args: func() -> args;
     }
 }
 
