@@ -8,6 +8,8 @@ interface typescript {
       constructor(sys: system);
       concat-arguments: func() -> string;
     }
+
+    version: func() -> string;
 }
 
 world root {

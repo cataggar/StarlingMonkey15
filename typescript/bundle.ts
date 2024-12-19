@@ -15,4 +15,12 @@ if (!build.success) {
     process.exit(1);
 }
 
+// Cannot access performance properties at pre-initialization time.
+// https://github.com/bytecodealliance/ComponentizeJS/issues/153
+// Workaround is to turn off the performance hooks by returning undefined.
+// https://github.com/microsoft/TypeScript/blob/main/src/compiler/performanceCore.ts
+let js = await fs.readFile('world.js', 'utf8');
+js = js.replace('function tryGetPerformanceHooks() {', 'function tryGetPerformanceHooks() { return;');
+await fs.writeFile('world.js', js, 'utf8');
+
 export {};

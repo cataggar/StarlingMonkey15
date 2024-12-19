@@ -1,4 +1,5 @@
 import { System } from 'ts:typescript-system/types';
+import * as ts from 'typescript';
 
 class Program {
     constructor(public system: System){}
@@ -12,6 +13,11 @@ class Program {
     }
 }
 
+function version() {
+    return ts.version;
+}
+
 export const typescript = {
     Program,
+    version
 }
