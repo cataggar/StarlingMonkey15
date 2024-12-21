@@ -3,10 +3,19 @@ package ts:typescript@0.1.0;
 interface typescript {
     use ts:typescript-system/types@0.1.0.{system};
 
+    set-sys: func(sys: system);
+
+    resource compiler-options {
+      new: static func() -> compiler-options;
+      get-always-strict: func() -> option<bool>;
+      set-always-strict: func(value: option<bool>);
+      // set-target: func(value: option<script-target>);
+    }
+
     resource program {
-      // constructor();
-      constructor(sys: system);
-      concat-arguments: func() -> string;
+      constructor();
+      // constructor(sys: system);
+      // concat-arguments: func() -> string;
     }
 
     version: func() -> string;

@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "ts:typescript-system/types": ["interfaces/ts-typescript-system-types.d.ts"]
+      "ts:typescript-system/types@0.1.0": ["interfaces/ts-typescript-system-types.d.ts"]
     }
   }
 }

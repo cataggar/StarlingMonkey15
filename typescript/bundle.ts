@@ -8,7 +8,7 @@ let build = await Bun.build({
     minify: false,
     format: 'esm',
     sourcemap: 'none',
-    external: ['ts-typescript-system-types']
+    external: ['ts:typescript-system/types@0.1.0']
 });
 if (!build.success) {
     console.error(build);
