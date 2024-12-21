@@ -13,12 +13,27 @@ interface typescript {
     }
 
     resource program {
-      constructor();
-      // constructor(sys: system);
-      // concat-arguments: func() -> string;
+      get-type-checker: func() -> type-checker;
     }
 
     version: func() -> string;
+
+    create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> compiler-host;
+
+    // create-program: func(root-names: list<string>, options: compiler-options) -> result<program, string>;
+    // create-program: func(options: compiler-options) -> result<program, string>;
+    create-program: func() -> result<program, string>;
+
+    get-pre-emit-diagnostics: func(program: borrow<program>) -> list<diagnostic>;
+
+    resource type-checker {
+    }
+
+    resource compiler-host {
+    }
+
+    resource diagnostic {
+    }
 }
 
 world root {

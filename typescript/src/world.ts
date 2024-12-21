@@ -5,15 +5,6 @@ export function setSys() {
     (ts as any).setSys(new System2(new System()));
 }
 
-// function createProgram(rootNames: Array<string>, options: CompilerOptions, host: CompilerHost): Program {
-// function createProgram(options: CompilerOptions, host: CompilerHost): Program {
-function createProgram(options: CompilerOptions): Program {
-    let rootNames = ["abc.ts"];
-    console.log("createProgram called");
-    // return new Program(ts.createProgram(rootNames, options.inner(), host.inner(), undefined, undefined));
-    return new Program(ts.createProgram(rootNames, options.inner(), undefined, undefined, undefined));
-}
-
 class CompilerOptions {
     private readonly _inner: ts.CompilerOptions;
 
@@ -42,9 +33,7 @@ class CompilerOptions {
     // }
 }
 
-function createCompilerHost(options: CompilerOptions): CompilerHost {
-    return new CompilerHost(ts.createCompilerHost(options.inner()));
-}
+
 
 class CompilerHost {
     private _inner: ts.CompilerHost;
@@ -90,15 +79,6 @@ class FnUseCaseSensitiveFileNames {
 }
 
 class Program {
-    // constructor(public system: System){}
-    // concatArguments() {
-    //     // return "todo";
-    //     // return this.system.getArguments().concat("__");
-    //     // return this.system.hello();
-    //     let args = this.system.args();
-    //     let count = args.count;
-    //     return `args count: ${count} one: ${args.one}, two: ${args.two}, three: ${args.three}`;
-    // }
     private _value : ts.Program;
     constructor(value: ts.Program) {
         this._value = value;
@@ -116,6 +96,8 @@ class TypeChecker {
     constructor(value: ts.TypeChecker) {
         this._value = value;
     }
+
+
 }
 
 function version() {
@@ -249,10 +231,52 @@ class System2 implements ts.System {
     }
 }
 
+function createCompilerHost(options: CompilerOptions): CompilerHost {
+    return new CompilerHost(ts.createCompilerHost(options.inner()));
+}
+
+// function createProgram(rootNames: Array<string>, options: CompilerOptions, host: CompilerHost): Program {
+// function createProgram(options: CompilerOptions, host: CompilerHost): Program {
+// function createProgram(options: CompilerOptions): Program {
+//     let rootNames = ["abc.ts"];
+//     console.log("createProgram called");
+//     // return new Program(ts.createProgram(rootNames, options.inner(), host.inner(), undefined, undefined));
+//     return new Program(ts.createProgram(rootNames, options.inner(), undefined, undefined, undefined));
+// }
+
+// function createProgram(rootNames: string[], options: CompilerOptions, host: CompilerHost) {
+// function createProgram(options: CompilerOptions, host: CompilerHost) {
+function createProgram() {
+    try {
+        return new Program(ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner()));
+    } catch (ex) {
+        throw `createProgram failed: ${ex}`;
+    }
+}
+
+function getPreEmitDiagnostics(program: Program) {
+    return ts.getPreEmitDiagnostics(program.inner()).map(Diagnostic.new);
+}
+
+class Diagnostic {
+    private _value : ts.Diagnostic;
+    constructor(value: ts.Diagnostic) {
+        this._value = value;
+    }
+    static new(value: ts.Diagnostic) {
+        return new Diagnostic(value);
+    }
+    inner() {
+        return this._value;
+    }
+}
+
 export const typescript = {
     Program,
     version,
     CompilerOptions,
     setSys,
+    createCompilerHost,
     createProgram,
+    getPreEmitDiagnostics
 }
