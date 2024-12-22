@@ -1,9 +1,8 @@
 mod bindings;
 use bindings::ts::typescript::typescript as ts;
 use bindings::ts::typescript_system::types as sys;
-use anyhow::Context;
 
-fn main() -> anyhow::Result<()> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     ts::set_sys(sys::System::new());
 
@@ -15,7 +14,7 @@ fn main() -> anyhow::Result<()> {
     let program = ts::create_program(
         //&["abc.ts".to_string()],
         // ts::CompilerOptions::new()
-    ).map_err(|e| anyhow::anyhow!(e))?;
+    )?;
     let _checker = program.get_type_checker();
     let _diagnostics = ts::get_pre_emit_diagnostics(&program);
 
