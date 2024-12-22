@@ -1,5 +1,6 @@
 package test:app;
 
 world app {
-    import ts:typescript/typescript@0.1.0;
+    import ts:typescript/ts@0.1.0;
+    export ts:typescript/ts-sys@0.1.0;
 }

@@ -9,8 +9,8 @@ async function runScript(cwd: string, script: string) {
     }
 }
 
-await runScript("typescript-system", "wkg");
-await runScript("typescript-system", "cargo");
+// await runScript("typescript-system", "wkg");
+// await runScript("typescript-system", "cargo");
 
 await runScript("typescript", "wkg");
 await runScript("typescript", "types");
@@ -21,7 +21,6 @@ await runScript("typescript", "componentize");
 await runScript("test-rs", "wkg");
 await runScript("test-rs", "cargo");
 await runScript("test-rs", "plug");
-await runScript("test-rs", "plug2");
 await runScript("test-rs", "run");
 
 export {};
