@@ -141,32 +141,26 @@ class System2 implements ts.System {
     constructor(private inner: System) {}
 
     write(message: string): void {
-        throw 'System.write Method not implemented.';
+        // throw 'System.write Method not implemented.';
         // console.log("System.write ", message);
         // this.output.push(message);
+        this.inner.write(message);
     }
     writeOutputIsTTY?(): boolean {
-        throw 'System.writeOutputIsTTY Method not implemented.';
-        // console.log("System.writeOutputIsTTY");
-        // return false;
+        return this.inner.writeOutputIsTty();
     }
     getWidthOfTerminal?(): number {
-        throw 'System.getWidthOfTerminal Method not implemented.';
-        console.log("System.getWidthOfTerminal");
-        return 120;
+        return this.inner.getWidthOfTerminal();
     }
     readFile(path: string, encoding?: string): string | undefined {
-        throw 'System.readFile Method not implemented.';
-        // console.log("System.readFile ", path);
         // return fs.readFileSync(path, encoding as BufferEncoding || 'utf-8');
+        return this.inner.readFile(path, encoding);
     }
     getFileSize?(path: string): number {
-        throw 'System.getFileSize Method not implemented.';
-        console.log("System.getFileSize ", path);
-        // return this.inner.getFileSize ? this.inner.getFileSize(path) : 0;
+        return this.inner.getFileSize(path);
     }
     writeFile(path: string, data: string, writeByteOrderMark?: boolean): void {
-        throw 'System.writeFile Method not implemented.';
+        this.inner.writeFile(path, data, writeByteOrderMark || false);
     }
     watchFile?(path: string, callback: ts.FileWatcherCallback, pollingInterval?: number, options?: ts.WatchOptions): ts.FileWatcher {
         throw 'System.watchFile Method not implemented.';
@@ -175,48 +169,29 @@ class System2 implements ts.System {
         throw 'System.watchDirectory Method not implemented.';
     }
     resolvePath(path: string): string {
-        throw 'resolvePath Method not implemented.';
+        return this.inner.resolvePath(path);
     }
     fileExists(path: string): boolean {
-        throw 'System.fileExists Method not implemented.';
-        // let fileExists = fs.existsSync(path);
-        // console.log("System.fileExists ", path, fileExists);
-        // return fileExists;
+        return this.inner.fileExists(path);
     }
     directoryExists(path: string): boolean {
-        // throw 'System.directoryExists Method not implemented.';
-        // let directoryExists = fs.existsSync(path);
-        // console.log("System.directoryExists ", path, directoryExists);
-        // return directoryExists;
         return this.inner.directoryExists(path);
     }
     createDirectory(path: string): void {
-        throw 'System.createDirectory Method not implemented.';
+        this.inner.createDirectory(path);
     }
     getExecutingFilePath(): string {
-        // let executingFilePath = process.argv[1];
-        // console.log("System.executingFilePath: ", executingFilePath);
-        // return executingFilePath;
-        // return "cowsay.js";
-        return "";
+        return this.inner.getExecutingFilePath();
     }
     getCurrentDirectory(): string {
         console.log("System.getCurrentDirectory");
-        // throw 'System.getCurrentDirectory Method not implemented.');
-        // console.log("inner", this.inner);
-        // let currentDirectory = this.inner.getCurrentDirectory();
-        // console.log("System.getCurrentDirectory: ", currentDirectory);
-        // return currentDirectory;
-        return "";
+        return this.inner.getCurrentDirectory();
     }
     getDirectories(path: string): string[] {
-        throw 'System.getDirectories Method not implemented.';
-        // let directories = this.inner.getDirectories(path);
-        // console.log("System.getDirectories: ", path, directories);
-        // return directories;
+        return this.inner.getDirectories(path);
     }
     readDirectory(path: string, extensions?: readonly string[], exclude?: readonly string[], include?: readonly string[], depth?: number): string[] {
-        throw 'System.readDirectory Method not implemented.';
+        return this.inner.readDirectory(path, extensions ? [...extensions] : [], exclude ? [...exclude] : [], include ? [...include] : [], depth);
     }
     getModifiedTime?(path: string): Date | undefined {
         throw 'System.getModifiedTime Method not implemented.';

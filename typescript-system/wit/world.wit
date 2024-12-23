@@ -2,20 +2,38 @@ package ts:typescript-system@0.1.0;
 
 interface types {
 
-    record args {
-        count: u8,
-        one: option<string>,
-        two: option<string>,
-        three: option<string>
-    }
+    // https://github.com/WebAssembly/wasi-clocks/blob/main/wit/monotonic-clock.wit
+    type instant = u64;
 
     resource system {
         constructor();
-        get-arguments: func() -> list<string>;
-        hello: func() -> result<string,string>;
-        args: func() -> args;
-        
-        directory-exists: func(path: string) -> result<bool,string>;
+        directory-exists: func(path: string) -> bool;
+        get-directories: func(path: string) -> list<string>;
+        write: func(message: string);
+        write-output-is-tty: func() -> bool;
+        get-width-of-terminal: func() -> u8;
+        read-file: func(path: string, encoding: option<string>) -> option<string>;
+        get-file-size: func(path: string) -> u32;
+        write-file: func(path: string, data: string, write-byte-order-mark: bool);
+        resolve-path: func(path: string) -> string;
+        file-exists: func(path: string) -> bool;
+        create-directory: func(path: string);
+        get-executing-file-path: func() -> string;
+        get-current-directory: func() -> string;
+        read-directory: func(path: string, extensions: list<string>, exclude: list<string>, includes: list<string>, depth: option<u8>) -> list<string>;
+        get-modified-time: func(path: string) -> option<instant>;
+        set-modified-time: func(path: string, time: instant);
+        delete-file: func(path: string);
+        create-hash: func(data: string) -> string;
+        create-sha256-hash: func(data: string) -> string;
+        get-memory-usage: func() -> u32;
+        exit: func(exit-code: s32);
+        real-path: func(path: string) -> string;
+        // set-timeout: func(callback: func(), ms: u32);
+        clear-timeout: func(timeout-id: u32);
+        clear-screen: func();
+        base64-encode: func(data: string) -> string;
+        base64-decode: func(data: string) -> string;
     }
 }
 
