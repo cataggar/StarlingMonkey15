@@ -1,6 +1,8 @@
 mod bindings;
 use bindings::exports::ts::typescript_system::types as sys;
 use bindings::wasi::cli::environment as env;
+use bindings::wasi::filesystem::types::Descriptor;
+use bindings::wasi::filesystem::types::DescriptorStat;
 use bindings::wasi::filesystem::types as fs;
 use bindings::wasi::filesystem::preopens;
 
@@ -10,26 +12,59 @@ impl sys::Guest for Component {
     type System = System;
 }
 
+fn find_descriptor(path: &str) -> Option<Descriptor> {
+    let dirs = preopens::get_directories();
+    for dir in dirs {
+        let path_flags = fs::PathFlags::empty();
+        let open_flags = fs::OpenFlags::empty();
+        let descriptor_flags = fs::DescriptorFlags::empty();
+        let descriptor = dir.0.open_at(path_flags, path, open_flags, descriptor_flags);
+        if let Ok(descriptor) = descriptor {
+            return Some(descriptor);
+        }
+    }
+    None
+}
+
+fn stat(path: &str) -> Option<DescriptorStat> {
+    match find_descriptor(path) {
+        Some(descriptor) => {
+            match descriptor.stat() {
+                Ok(stat) => {
+                    return Some(stat);
+                },
+                Err(err) => {
+                    println!("stat error: {:?}", err);
+                }
+            }
+        },
+        None => {
+            // println!("stat {:?} descriptor not found", path);
+        }
+    }
+    None
+}
+
 struct System;
 impl sys::GuestSystem for System {
     fn new() -> Self {
         System
     }
-    // fn get_arguments(&self) -> Vec<String> {
-    //     cli::environment::get_arguments()
-    // }
     
     fn directory_exists(
         &self,
         path: String,
     ) -> bool {
-        println!("directory_exists({:?})", path);
-        // let dirs = preopens::get_directories();
-        // let dirs = dirs.into_iter().map(|d| d.1 ).collect::<Vec<_>>();
-        // let err_msg = format!("Directories: {:?}", dirs);
-        // Err(err_msg)
-        // Ok(dirs.iter().any(|d| d.1 == path))
-        true
+        // println!("directory_exists({:?})", path);
+        match stat(&path) {
+            Some(stat) => {
+                // println!("directory exists: {:?}", path);
+                return stat.type_ == fs::DescriptorType::Directory;
+            },
+            None => {
+                false
+            }
+        }
     }
     
     fn get_directories(
@@ -37,6 +72,26 @@ impl sys::GuestSystem for System {
         path: String,
     ) -> Vec<String> {
         println!("get_directories({:?})", path);
+        match find_descriptor(&path) {
+            Some(descriptor) => {
+                match descriptor.read_directory() {
+                    Ok(entries) => {
+                        let mut dirs = Vec::new();
+                        while let Ok(Some(entry)) = entries.read_directory_entry() {
+                            dirs.push(entry.name);
+                        }
+                        println!("get_directories result: {:?}", dirs);
+                        return dirs;
+                    },
+                    Err(err) => {
+                        println!("get_directories readdir error: {:?}", err);
+                    }
+                }
+            },
+            None => {
+                println!("get_directories descriptor not found");
+            }
+        }
         return Vec::new();
     }
     
@@ -68,20 +123,20 @@ impl sys::GuestSystem for System {
             let open_flags = fs::OpenFlags::empty();
             let descriptor_flags = fs::DescriptorFlags::empty();
             let descriptor = dir.0.open_at(path_flags, &path, open_flags, descriptor_flags);
-            println!("read_file result: {:?})", descriptor);
+            // println!("read_file result: {:?})", descriptor);
             if let Ok(descriptor) = descriptor {
                 match descriptor.stat() {
                     Ok(stat) => {
-                        println!("read_file stat: {:?}", stat);
+                        // println!("read_file stat: {:?}", stat);
                         let length = stat.size;
                         let bytes = descriptor.read(length, 0);
                         match bytes {
                             Ok((bytes, true)) => {
-                                println!("read_file bytes length true: {}", bytes.len());
+                                // println!("read_file bytes length true: {}", bytes.len());
                                 return Some(String::from_utf8_lossy(&bytes).to_string());
                             },
                             Ok((bytes, false)) => {
-                                println!("read_file bytes length false: {}", bytes.len());
+                                // println!("read_file bytes length false: {}", bytes.len());
                                 // TODO encoding
                                 return Some(String::from_utf8_lossy(&bytes).to_string());
                             },
@@ -136,8 +191,9 @@ impl sys::GuestSystem for System {
     }
     
     fn file_exists(&self, path: String) -> bool {
-        println!("file_exists({:?})", path);
-        true
+        let exists = stat(&path).is_some();
+        // println!("file_exists({:?}) -> {}", path, exists);
+        exists
     }
     
     fn create_directory(&self, path: String) {
