@@ -1,6 +1,8 @@
 mod bindings;
 use bindings::exports::ts::typescript_system::types as sys;
 use bindings::wasi::cli::environment as env;
+use bindings::wasi::filesystem::types as fs;
+use bindings::wasi::filesystem::preopens;
 
 struct Component;
 
@@ -59,11 +61,64 @@ impl sys::GuestSystem for System {
         encoding: Option<String>,
     ) -> Option<String> {
         println!("read_file({:?}, {:?})", path, encoding);
+        let dirs = preopens::get_directories();
+        for dir in dirs {
+            // https://github.com/WebAssembly/wasi-filesystem/tree/main
+            let path_flags = fs::PathFlags::empty();
+            let open_flags = fs::OpenFlags::empty();
+            let descriptor_flags = fs::DescriptorFlags::empty();
+            let descriptor = dir.0.open_at(path_flags, &path, open_flags, descriptor_flags);
+            println!("read_file result: {:?})", descriptor);
+            if let Ok(descriptor) = descriptor {
+                match descriptor.stat() {
+                    Ok(stat) => {
+                        println!("read_file stat: {:?}", stat);
+                        let length = stat.size;
+                        let bytes = descriptor.read(length, 0);
+                        match bytes {
+                            Ok((bytes, true)) => {
+                                println!("read_file bytes length true: {}", bytes.len());
+                                return Some(String::from_utf8_lossy(&bytes).to_string());
+                            },
+                            Ok((bytes, false)) => {
+                                println!("read_file bytes length false: {}", bytes.len());
+                                // TODO encoding
+                                return Some(String::from_utf8_lossy(&bytes).to_string());
+                            },
+                            Err(err) => {
+                                println!("read_file read error: {:?}", err);
+                            }
+                        }
+                    },
+                    Err(err) => {
+                        println!("read_file stat error: {:?}", err);
+                    }
+                }
+            }
+        }
         None
     }
     
     fn get_file_size(&self, path: String) -> u32 {
-        todo!()
+        println!("get_file_size({:?})", path);
+        let dirs = preopens::get_directories();
+        for dir in dirs {
+            let path_flags = fs::PathFlags::empty();
+            let open_flags = fs::OpenFlags::empty();
+            let descriptor_flags = fs::DescriptorFlags::empty();
+            let descriptor = dir.0.open_at(path_flags, &path, open_flags, descriptor_flags);
+            if let Ok(descriptor) = descriptor {
+                match descriptor.stat() {
+                    Ok(stat) => {
+                        return stat.size as u32;
+                    },
+                    Err(err) => {
+                        println!("get_file_size stat error: {:?}", err);
+                    }
+                }
+            }
+        }
+        return 0;
     }
     
     fn write_file(
