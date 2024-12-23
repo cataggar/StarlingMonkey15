@@ -5,5 +5,9 @@
         "typescript-system",
         "typescript",
         "test-rs"
-    ]
+    ],
+    "scripts": {
+        "run": "WASMTIME_BACKTRACE_DETAILS=1 wasmtime run --dir .::/ test-rs/target/test2.wasm a b c"
+    }
+
 }

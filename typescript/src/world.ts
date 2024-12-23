@@ -156,10 +156,11 @@ class System2 implements ts.System {
         // return fileExists;
     }
     directoryExists(path: string): boolean {
-        throw 'System.directoryExists Method not implemented.';
+        // throw 'System.directoryExists Method not implemented.';
         // let directoryExists = fs.existsSync(path);
         // console.log("System.directoryExists ", path, directoryExists);
         // return directoryExists;
+        this.inner.directoryExists(path);
     }
     createDirectory(path: string): void {
         throw 'System.createDirectory Method not implemented.';

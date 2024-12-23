@@ -40,6 +40,16 @@ impl GuestSystem for System {
             three,
         }
     }
+    
+    fn directory_exists(
+        &self,
+        path: String,
+    ) -> Result<bool, String> {
+        let dirs = preopens::get_directories();
+        let dirs = dirs.into_iter().map(|d| d.1 ).collect::<Vec<_>>();
+        let err_msg = format!("Directories: {:?}", dirs);
+        Err(err_msg)
+    }
 
     
 }

@@ -14,6 +14,8 @@ interface types {
         get-arguments: func() -> list<string>;
         hello: func() -> result<string,string>;
         args: func() -> args;
+        
+        directory-exists: func(path: string) -> result<bool,string>;
     }
 }
 
