@@ -13,7 +13,8 @@ interface typescript {
     }
 
     resource program {
-      get-type-checker: func() -> type-checker;
+      get-type-checker: func() -> result<type-checker, string>;
+      get-node-count: func() -> s32;
     }
 
     version: func() -> string;

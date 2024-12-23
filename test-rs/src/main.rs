@@ -15,8 +15,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //&["abc.ts".to_string()],
         // ts::CompilerOptions::new()
     )?;
-    let _checker = program.get_type_checker();
-    let _diagnostics = ts::get_pre_emit_diagnostics(&program);
+    println!("program: {:?}", program);
+    // let _checker = program.get_type_checker()?;
+    // let _diagnostics = ts::get_pre_emit_diagnostics(&program);
+    // print node count
+    println!("node count: {}", program.get_node_count());
 
     let version = ts::version();
     println!("typescript version: {version}");

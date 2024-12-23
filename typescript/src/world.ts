@@ -87,7 +87,15 @@ class Program {
         return this._value;
     }
     getTypeChecker() {
-        return new TypeChecker(this._value.getTypeChecker());
+        try {
+            return new TypeChecker(this._value.getTypeChecker());
+            // return new TypeChecker(new Object() as ts.TypeChecker);
+        } catch (ex) {
+            throw `getTypeChecker failed: ${ex}`;
+        }
+    }
+    getNodeCount() {
+        return this._value.getNodeCount();
     }
 }
 
@@ -160,7 +168,7 @@ class System2 implements ts.System {
         // let directoryExists = fs.existsSync(path);
         // console.log("System.directoryExists ", path, directoryExists);
         // return directoryExists;
-        this.inner.directoryExists(path);
+        return this.inner.directoryExists(path);
     }
     createDirectory(path: string): void {
         throw 'System.createDirectory Method not implemented.';
@@ -249,7 +257,11 @@ function createCompilerHost(options: CompilerOptions): CompilerHost {
 // function createProgram(options: CompilerOptions, host: CompilerHost) {
 function createProgram() {
     try {
-        return new Program(ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner()));
+        var program = ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner());
+        if (!program) {
+            throw "createProgram returned undefined";
+        }
+        return new Program(program);
     } catch (ex) {
         throw `createProgram failed: ${ex}`;
     }
