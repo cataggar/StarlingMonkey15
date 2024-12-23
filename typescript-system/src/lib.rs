@@ -1,5 +1,9 @@
 mod bindings;
-use bindings::wasi::cli::environment;
+use std::f32::consts::E;
+
+use bindings::wasi::{self, cli};
+use bindings::wasi::filesystem::types as fs;
+use bindings::wasi::filesystem::preopens;
 use bindings::exports::ts::typescript_system::types::{Args, Guest, GuestSystem};
 
 struct Component;
@@ -14,12 +18,13 @@ impl GuestSystem for System {
         System
     }
     fn get_arguments(&self) -> Vec<String> {
-        environment::get_arguments()
+        cli::environment::get_arguments()
     }
-    fn hello(&self) -> String {
-        // "Hello from Rust!".to_string()
-        // return concatenated string
-        self.get_arguments().join(" ")
+
+    fn hello(&self) -> Result<String,String> {
+        let dirs = preopens::get_directories();
+        let err_msg = format!("Directories: {:?}", dirs);
+        Err(err_msg)
     }
     
     fn args(&self) -> Args {

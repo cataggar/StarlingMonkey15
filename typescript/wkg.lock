@@ -12,6 +12,15 @@ version = "0.2.2"
 digest = "sha256:d8e8828853fe84582422dcff0a567c3ac5750febf851f908df314437a453b608"
 
 [[packages]]
+name = "wasi:filesystem"
+registry = "wasi.dev"
+
+[[packages.versions]]
+requirement = "=0.2.2"
+version = "0.2.2"
+digest = "sha256:c1e2b2f8c3c4abeaf0e1591c80453a7db395292159a01fb07921f845e0bcdca9"
+
+[[packages]]
 name = "wasi:io"
 registry = "wasi.dev"
 

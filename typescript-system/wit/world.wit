@@ -12,12 +12,14 @@ interface types {
     resource system {
         constructor();
         get-arguments: func() -> list<string>;
-        hello: func() -> string;
+        hello: func() -> result<string,string>;
         args: func() -> args;
     }
 }
 
 world root {
-    import wasi:cli/environment@0.2.2;
+    import wasi:cli/environment@0.2.0;
+    import wasi:filesystem/types@0.2.0;
+    import wasi:filesystem/preopens@0.2.0;
     export types;
 }
