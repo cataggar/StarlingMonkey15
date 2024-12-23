@@ -97,6 +97,26 @@ class Program {
     getNodeCount() {
         return this._value.getNodeCount();
     }
+    getSourceFiles() {
+        try {
+            return this._value.getSourceFiles().map(SourceFile.new);
+        } catch (ex) {
+            throw `getSourceFiles failed: ${ex}`;
+        }
+    }
+}
+
+class SourceFile {
+    private _value : ts.SourceFile;
+    constructor(value: ts.SourceFile) {
+        this._value = value;
+    }
+    static new(value: ts.SourceFile) {
+        return new SourceFile(value);
+    }
+    inner() {
+        return this._value;
+    }
 }
 
 class TypeChecker {

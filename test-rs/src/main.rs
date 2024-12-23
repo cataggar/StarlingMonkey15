@@ -20,6 +20,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let _diagnostics = ts::get_pre_emit_diagnostics(&program);
     // print node count
     println!("node count: {}", program.get_node_count());
+    // let source_files = program.get_source_files()?; // wasm trap
+    // println!("source files: {:?}", source_files);
 
     let version = ts::version();
     println!("typescript version: {version}");
