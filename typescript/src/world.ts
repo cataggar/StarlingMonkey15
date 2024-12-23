@@ -1,19 +1,24 @@
-import { System } from 'ts:typescript-system/types@0.1.0';
-import * as ts from 'typescript';
+// import { System } from 'ts:typescript-system/types@0.1.0';
+import * as t from 'typescript';
+// import * as sys from 'system';
+// import * as sys from 'interfaces/ts-typescript-sys';
+// import { System } from 'ts-sys';
+// import * as sys from 'sys';
+import { System } from 'ts:typescript/ts-sys@0.1.0';
 
-export function setSys() {
+export function setSystem() {
     (ts as any).setSys(new System2(new System()));
 }
 
 class CompilerOptions {
-    private readonly _inner: ts.CompilerOptions;
+    private readonly _inner: t.CompilerOptions;
 
-    constructor(inner: ts.CompilerOptions) {
+    constructor(inner: t.CompilerOptions) {
         this._inner = inner;
     }
 
     static new() {
-        return new CompilerOptions(new Object() as ts.CompilerOptions);
+        return new CompilerOptions(new Object() as t.CompilerOptions);
     }
 
     inner() {
@@ -36,8 +41,8 @@ class CompilerOptions {
 
 
 class CompilerHost {
-    private _inner: ts.CompilerHost;
-    constructor(inner: ts.CompilerHost) {
+    private _inner: t.CompilerHost;
+    constructor(inner: t.CompilerHost) {
         this._inner = inner;
     }
     inner() {
@@ -79,8 +84,8 @@ class FnUseCaseSensitiveFileNames {
 }
 
 class Program {
-    private _value : ts.Program;
-    constructor(value: ts.Program) {
+    private _value : t.Program;
+    constructor(value: t.Program) {
         this._value = value;
     }
     inner() {
@@ -92,19 +97,17 @@ class Program {
 }
 
 class TypeChecker {
-    private _value : ts.TypeChecker;
-    constructor(value: ts.TypeChecker) {
+    private _value : t.TypeChecker;
+    constructor(value: t.TypeChecker) {
         this._value = value;
     }
-
-
 }
 
 function version() {
     return ts.version;
 }
 
-class System2 implements ts.System {
+class System2 implements t.System {
     public readonly args: string[] = [];
     public readonly output: string[] = [];
     public readonly newLine: string = "\n";
@@ -140,10 +143,10 @@ class System2 implements ts.System {
     writeFile(path: string, data: string, writeByteOrderMark?: boolean): void {
         throw new Error('System.writeFile Method not implemented.');
     }
-    watchFile?(path: string, callback: ts.FileWatcherCallback, pollingInterval?: number, options?: ts.WatchOptions): ts.FileWatcher {
+    watchFile?(path: string, callback: t.FileWatcherCallback, pollingInterval?: number, options?: t.WatchOptions): t.FileWatcher {
         throw new Error('System.watchFile Method not implemented.');
     }
-    watchDirectory?(path: string, callback: ts.DirectoryWatcherCallback, recursive?: boolean, options?: ts.WatchOptions): ts.FileWatcher {
+    watchDirectory?(path: string, callback: t.DirectoryWatcherCallback, recursive?: boolean, options?: t.WatchOptions): t.FileWatcher {
         throw new Error('System.watchDirectory Method not implemented.');
     }
     resolvePath(path: string): string {
@@ -232,7 +235,7 @@ class System2 implements ts.System {
 }
 
 function createCompilerHost(options: CompilerOptions): CompilerHost {
-    return new CompilerHost(ts.createCompilerHost(options.inner()));
+    return new CompilerHost(t.createCompilerHost(options.inner()));
 }
 
 // function createProgram(rootNames: Array<string>, options: CompilerOptions, host: CompilerHost): Program {
@@ -247,23 +250,25 @@ function createCompilerHost(options: CompilerOptions): CompilerHost {
 // function createProgram(rootNames: string[], options: CompilerOptions, host: CompilerHost) {
 // function createProgram(options: CompilerOptions, host: CompilerHost) {
 function createProgram() {
-    try {
-        return new Program(ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner()));
-    } catch (ex) {
-        throw `createProgram failed: ${ex}`;
-    }
+    // try {
+    //     return new Program(ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner()));
+    // } catch (ex) {
+    //     throw `createProgram failed: ${ex}`;
+    // }
+    throw 'createProgram not implemented';
 }
 
 function getPreEmitDiagnostics(program: Program) {
-    return ts.getPreEmitDiagnostics(program.inner()).map(Diagnostic.new);
+    // return ts.getPreEmitDiagnostics(program.inner()).map(Diagnostic.new);
+    throw 'getPreEmitDiagnostics not implemented';
 }
 
 class Diagnostic {
-    private _value : ts.Diagnostic;
-    constructor(value: ts.Diagnostic) {
+    private _value : t.Diagnostic;
+    constructor(value: t.Diagnostic) {
         this._value = value;
     }
-    static new(value: ts.Diagnostic) {
+    static new(value: t.Diagnostic) {
         return new Diagnostic(value);
     }
     inner() {
@@ -271,11 +276,11 @@ class Diagnostic {
     }
 }
 
-export const typescript = {
+export const ts = {
     Program,
     version,
     CompilerOptions,
-    setSys,
+    setSystem,
     createCompilerHost,
     createProgram,
     getPreEmitDiagnostics

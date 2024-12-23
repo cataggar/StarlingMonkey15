@@ -5,5 +5,8 @@
         "typescript-system",
         "typescript",
         "test-rs"
-    ]
+    ],
+    "scripts": {
+        "compose": "wac compose --registry wa.dev -o test.wasm --dep ts:typescript=typescript/ts-typescript.wasm --dep test:app=test-rs/target/wasm32-wasip1/debug/test-rs.wasm test.wac"
+    }
 }

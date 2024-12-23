@@ -1,0 +1,15 @@
+package test:combo;
+
+let app = new test:app { ... ts-sys };
+let ts = new ts:typescript { ts-sys ... };
+
+// Instantiate the `greeter` component by plugging its `name`
+// import with the `name` export of the `name` component.
+//let greeter = new example:greeter {
+//  name: n.name,
+//};
+
+// Export the greet function from the greeter component
+//export greeter.greet;
+
+//export wasi:cli/run@0.2.0;

@@ -1,9 +1,19 @@
 package ts:typescript@0.1.0;
 
-interface typescript {
-    use ts:typescript-system/types@0.1.0.{system};
+interface ts-sys {
+  resource system {
+    constructor();
+    // get-arguments: func() -> list<string>;
+    hello: func() -> string;
+    // args: func() -> args;
+  }
+}
 
-    set-sys: func(sys: system);
+interface ts {
+    // use ts:typescript-system/types@0.1.0.{system};
+    use ts-sys.{system};
+
+    set-system: func(sys: system);
 
     resource compiler-options {
       new: static func() -> compiler-options;
@@ -37,10 +47,11 @@ interface typescript {
 }
 
 world root {
-  import ts:typescript-system/types@0.1.0;
+  // import ts:typescript-system/types@0.1.0;
 
   // to satisfy jco componentize
-  import wasi:io/poll@0.2.2;
-  
-  export typescript;
+  // import wasi:io/poll@0.2.2;
+  import ts-sys;
+  // import ts:typescript/ts-sys@0.1.0;
+  export ts;
 }
