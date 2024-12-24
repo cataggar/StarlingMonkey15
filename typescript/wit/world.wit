@@ -15,6 +15,7 @@ interface typescript {
     resource program {
       get-type-checker: func() -> result<type-checker, string>;
       get-node-count: func() -> s32;
+      get-type-count: func() -> s32;
       get-source-files: func() -> result<list<source-file>, string>;
     }
 

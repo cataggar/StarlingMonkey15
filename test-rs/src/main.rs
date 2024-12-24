@@ -11,17 +11,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let diagnostics = ts.getPreEmitDiagnostics(program, undefined, undefined);
 
     // let program = Program::new();
-    let program = ts::create_program(
-        //&["abc.ts".to_string()],
-        // ts::CompilerOptions::new()
-    )?;
-    println!("program: {:?}", program);
+    // let program = ts::create_program(
+    //     //&["abc.ts".to_string()],
+    //     // ts::CompilerOptions::new()
+    // )?;
+    // println!("program: {:?}", program);
     // let _checker = program.get_type_checker()?;
     // let _diagnostics = ts::get_pre_emit_diagnostics(&program);
     // print node count
-    println!("node count: {}", program.get_node_count());
-    let source_files = program.get_source_files()?;
-    println!("source files: {:?}", source_files);
+    // println!("node count: {}", program.get_node_count());
+    // println!("type count: {}", program.get_type_count());
+    // let source_files = program.get_source_files()?;
+    // println!("source files: {:?}", source_files);
 
     let version = ts::version();
     println!("typescript version: {version}");

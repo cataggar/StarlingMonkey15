@@ -97,6 +97,9 @@ class Program {
     getNodeCount() {
         return this._value.getNodeCount();
     }
+    getTypeCount() {
+        return this._value.getTypeCount();
+    }
     getSourceFiles() {
         try {
             return this._value.getSourceFiles().map(SourceFile.new);
