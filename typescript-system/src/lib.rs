@@ -74,11 +74,11 @@ impl sys::GuestSystem for System {
                             dirs.push(entry.name);
                         }
                     }
-                    println!("get_directories result: {:?}", dirs);
+                    println!("get_directories {:?} result: {:?}", path, dirs);
                     return dirs;
                 }
                 Err(err) => {
-                    println!("get_directories readdir error: {:?}", err);
+                    println!("get_directories {:?} readdir error: {:?}", path, err);
                 }
             },
             None => {
@@ -106,6 +106,13 @@ impl sys::GuestSystem for System {
     fn read_file(&self, path: String, _encoding: Option<String>) -> Option<String> {
         // println!("read_file({:?}, {:?})", path, encoding);
         // println!("read_file result: {:?})", descriptor);
+        // special case lib definitions
+        let path =
+            if path.starts_with("lib."){
+                format!("node_modules/typescript/lib/{}", path)
+            } else {
+                path.to_owned()
+            };
         if let Some(descriptor) = find_descriptor(&path) {
             match descriptor.stat() {
                 Ok(stat) => {
@@ -113,17 +120,15 @@ impl sys::GuestSystem for System {
                     let length = stat.size;
                     let bytes = descriptor.read(length, 0);
                     match bytes {
-                        Ok((bytes, true)) => {
-                            // println!("read_file bytes length true: {}", bytes.len());
-                            return Some(String::from_utf8_lossy(&bytes).to_string());
-                        }
-                        Ok((bytes, false)) => {
-                            // println!("read_file bytes length false: {}", bytes.len());
-                            // TODO encoding
+                        Ok((bytes, _)) => {
+                            if bytes.len() != length as usize{
+                                println!("read_file {:?} bytes length mismatch: {} != {}", path, bytes.len(), length);
+                            }
+                            println!("read_file {:?} length {}", path, bytes.len());
                             return Some(String::from_utf8_lossy(&bytes).to_string());
                         }
                         Err(err) => {
-                            println!("read_file read error: {:?}", err);
+                            println!("read_file {:?} read error: {:?}", path, err);
                         }
                     }
                 }
