@@ -202,12 +202,12 @@ impl sys::GuestSystem for System {
         Vec::new()
     }
 
-    fn get_modified_time(&self, path: String) -> Option<sys::Instant> {
+    fn get_modified_time(&self, path: String) -> Option<sys::Timestamp> {
         println!("get_modified_time({:?})", path);
         None
     }
 
-    fn set_modified_time(&self, path: String, time: sys::Instant) {
+    fn set_modified_time(&self, path: String, time: sys::Timestamp) {
         println!("set_modified_time({:?}, {:?})", path, time);
     }
 

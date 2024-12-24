@@ -33,6 +33,24 @@ class CompilerOptions {
     // }
 }
 
+class CreateProgramOptions {
+    private readonly _inner: ts.CreateProgramOptions;
+
+    constructor(inner: ts.CreateProgramOptions) {
+        this._inner = inner;
+    }
+
+    static new(rootNames: string[], options: CompilerOptions) {
+        let inner = new Object() as ts.CreateProgramOptions;
+        inner.rootNames = rootNames;
+        inner.options = options.inner();
+        return new CreateProgramOptions(inner);
+    }
+
+    inner() {
+        return this._inner;
+    }
+}
 
 
 class CompilerHost {
@@ -144,9 +162,6 @@ class System2 implements ts.System {
     constructor(private inner: System) {}
 
     write(message: string): void {
-        // throw 'System.write Method not implemented.';
-        // console.log("System.write ", message);
-        // this.output.push(message);
         this.inner.write(message);
     }
     writeOutputIsTTY?(): boolean {
@@ -200,65 +215,63 @@ class System2 implements ts.System {
         throw 'System.getModifiedTime Method not implemented.';
     }
     setModifiedTime?(path: string, time: Date): void {
-        throw 'System.setModifiedTime Method not implemented.';
+        return this.inner.setModifiedTime(path, time.getTime());
     }
     deleteFile?(path: string): void {
-        throw 'System.deleteFile Method not implemented.';
+        this.inner.deleteFile(path);
     }
     createHash?(data: string): string {
-        throw 'System.createHash Method not implemented.';
+        return this.inner.createHash(data);
     }
     createSHA256Hash?(data: string): string {
-        throw 'System.createSHA256Hash Method not implemented.';
+        return this.inner.createSha256Hash(data);
     }
     getMemoryUsage?(): number {
-        throw 'getMemoryUsage Method not implemented.';
+        return this.inner.getMemoryUsage();
     }
     exit(exitCode?: number): void {
-        throw 'exit Method not implemented.';
+        this.inner.exit(exitCode || 0);
     }
     realpath?(path: string): string {
-        console.log("System.realpath: ", path);
-        return path;
+        return this.inner.realPath(path);
     }
     setTimeout?(callback: (...args: any[]) => void, ms: number, ...args: any[]) {
-        throw 'System.setTimeout Method not implemented.';
+        // this.inner.setTimeout(ms);
     }
     clearTimeout?(timeoutId: any): void {
-        throw 'System.clearTimeout Method not implemented.';
+        this.inner.clearTimeout(timeoutId);
     }
     clearScreen?(): void {
-        throw 'System.clearScreen Method not implemented.';
+        this.inner.clearScreen();
     }
     base64decode?(input: string): string {
-        throw 'System.base64decode Method not implemented.';
+        return this.inner.base64Decode(input);
     }
     base64encode?(input: string): string {
-        throw 'System.base64encode Method not implemented.';
+        return this.inner.base64Encode(input);
     }
 }
 
 function createCompilerHost(options: CompilerOptions): CompilerHost {
-    return new CompilerHost(ts.createCompilerHost(options.inner()));
+    try {
+        return new CompilerHost(ts.createCompilerHost(options.inner()));
+    } catch (ex) {
+        throw `createCompilerHost failed: ${ex}`;
+    }
 }
 
-// function createProgram(rootNames: Array<string>, options: CompilerOptions, host: CompilerHost): Program {
-// function createProgram(options: CompilerOptions, host: CompilerHost): Program {
-// function createProgram(options: CompilerOptions): Program {
-//     let rootNames = ["abc.ts"];
-//     console.log("createProgram called");
-//     // return new Program(ts.createProgram(rootNames, options.inner(), host.inner(), undefined, undefined));
-//     return new Program(ts.createProgram(rootNames, options.inner(), undefined, undefined, undefined));
-// }
-
-// function createProgram(rootNames: string[], options: CompilerOptions, host: CompilerHost) {
-// function createProgram(options: CompilerOptions, host: CompilerHost) {
-function createProgram() {
+function createProgram(rootNames: string[], options: CompilerOptions, host: CompilerHost) {
     try {
-        var program = ts.createProgram(["abc.ts"], CompilerOptions.new().inner(), createCompilerHost(CompilerOptions.new()).inner());
-        if (!program) {
-            throw "createProgram returned undefined";
-        }
+        var program = ts.createProgram(rootNames, options.inner(), host.inner());
+        return new Program(program);
+    } catch (ex) {
+        throw `createProgram failed: ${ex}`;
+    }
+}
+
+function createProgram2(options: CreateProgramOptions) {
+    try {
+        var program = ts.createProgram(options.inner());
         return new Program(program);
     } catch (ex) {
         throw `createProgram failed: ${ex}`;
@@ -289,5 +302,7 @@ export const typescript = {
     setSys,
     createCompilerHost,
     createProgram,
-    getPreEmitDiagnostics
+    createProgram2,
+    getPreEmitDiagnostics,
+    CreateProgramOptions,
 }

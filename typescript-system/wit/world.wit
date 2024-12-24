@@ -2,8 +2,8 @@ package ts:typescript-system@0.1.0;
 
 interface types {
 
-    // https://github.com/WebAssembly/wasi-clocks/blob/main/wit/monotonic-clock.wit
-    type instant = u64;
+    // Seconds since the Unix Epoch. Good until 2106-02-07T06:28:15Z.
+    type timestamp = u32;
 
     resource system {
         constructor();
@@ -21,8 +21,8 @@ interface types {
         get-executing-file-path: func() -> string;
         get-current-directory: func() -> string;
         read-directory: func(path: string, extensions: list<string>, exclude: list<string>, includes: list<string>, depth: option<u8>) -> list<string>;
-        get-modified-time: func(path: string) -> option<instant>;
-        set-modified-time: func(path: string, time: instant);
+        get-modified-time: func(path: string) -> option<timestamp>;
+        set-modified-time: func(path: string, time: timestamp);
         delete-file: func(path: string);
         create-hash: func(data: string) -> string;
         create-sha256-hash: func(data: string) -> string;

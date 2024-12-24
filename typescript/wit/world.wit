@@ -12,6 +12,10 @@ interface typescript {
       // set-target: func(value: option<script-target>);
     }
 
+    resource create-program-options {
+      new: static func(root-names: list<string>, options: borrow<compiler-options>) -> create-program-options;
+    }
+
     resource program {
       get-type-checker: func() -> result<type-checker, string>;
       get-node-count: func() -> s32;
@@ -21,11 +25,10 @@ interface typescript {
 
     version: func() -> string;
 
-    create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> compiler-host;
+    create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> result<compiler-host, string>;
 
-    // create-program: func(root-names: list<string>, options: compiler-options) -> result<program, string>;
-    // create-program: func(options: compiler-options) -> result<program, string>;
-    create-program: func() -> result<program, string>;
+    create-program: func(root-names: list<string>, options: borrow<compiler-options>, host: borrow<compiler-host>) -> result<program, string>;
+    create-program2: func(options: borrow<create-program-options>) -> result<program, string>;
 
     get-pre-emit-diagnostics: func(program: borrow<program>) -> list<diagnostic>;
 

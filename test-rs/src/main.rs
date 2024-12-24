@@ -6,14 +6,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     ts::set_sys(sys::System::new());
 
-    // let program = ts.createProgram(["abc.ts"], compilerOptions, compilerHost, undefined, undefined);
-    // let checker = program.getTypeChecker();
-    // let diagnostics = ts.getPreEmitDiagnostics(program, undefined, undefined);
+    let version = ts::version();
+    println!("typescript version: {version}");
 
-    // let program = Program::new();
+    let compilerOptions = ts::CompilerOptions::new();
+    let programOptions = ts::CreateProgramOptions::new(&["abc.ts".to_string()], &compilerOptions);
+    let program = ts::create_program2(&programOptions)?;
+
+    // 
+    // let host = ts::create_compiler_host(&options, true)?;
     // let program = ts::create_program(
-    //     //&["abc.ts".to_string()],
-    //     // ts::CompilerOptions::new()
+    //     &["abc.ts".to_string()],
+    //     &options,
+    //     &host
     // )?;
     // println!("program: {:?}", program);
     // let _checker = program.get_type_checker()?;
@@ -23,9 +28,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // println!("type count: {}", program.get_type_count());
     // let source_files = program.get_source_files()?;
     // println!("source files: {:?}", source_files);
-
-    let version = ts::version();
-    println!("typescript version: {version}");
 
     Ok(())
 }
