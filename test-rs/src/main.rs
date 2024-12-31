@@ -1,17 +1,17 @@
 mod bindings;
 use bindings::ts::typescript::typescript as ts;
-use bindings::ts::typescript_system::types as sys;
+// use bindings::ts::typescript_system::types as sys;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    ts::set_sys(sys::System::new());
+    // ts::set_sys(sys::System::new());
 
     let version = ts::version();
-    println!("typescript version: {version}");
+    println!("typespec version: {version}");
 
-    let compilerOptions = ts::CompilerOptions::new();
-    let programOptions = ts::CreateProgramOptions::new(&["abc.ts".to_string()], &compilerOptions);
-    let program = ts::create_program2(&programOptions)?;
+    // let compilerOptions = ts::CompilerOptions::new();
+    // let programOptions = ts::CreateProgramOptions::new(&["abc.ts".to_string()], &compilerOptions);
+    // let program = ts::create_program2(&programOptions)?;
 
     // 
     // let host = ts::create_compiler_host(&options, true)?;

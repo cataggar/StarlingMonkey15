@@ -1,51 +1,51 @@
 package ts:typescript@0.1.0;
 
 interface typescript {
-    use ts:typescript-system/types@0.1.0.{system};
+    // use ts:typescript-system/types@0.1.0.{system};
 
-    set-sys: func(sys: system);
+    // set-sys: func(sys: system);
 
-    resource compiler-options {
-      new: static func() -> compiler-options;
-      get-always-strict: func() -> option<bool>;
-      set-always-strict: func(value: option<bool>);
-      // set-target: func(value: option<script-target>);
-    }
+    // resource compiler-options {
+    //   new: static func() -> compiler-options;
+    //   get-always-strict: func() -> option<bool>;
+    //   set-always-strict: func(value: option<bool>);
+    //   // set-target: func(value: option<script-target>);
+    // }
 
-    resource create-program-options {
-      new: static func(root-names: list<string>, options: borrow<compiler-options>) -> create-program-options;
-    }
+    // resource create-program-options {
+    //   new: static func(root-names: list<string>, options: borrow<compiler-options>) -> create-program-options;
+    // }
 
-    resource program {
-      get-type-checker: func() -> result<type-checker, string>;
-      get-node-count: func() -> s32;
-      get-type-count: func() -> s32;
-      get-source-files: func() -> result<list<source-file>, string>;
-    }
+    // resource program {
+    //   get-type-checker: func() -> result<type-checker, string>;
+    //   get-node-count: func() -> s32;
+    //   get-type-count: func() -> s32;
+    //   get-source-files: func() -> result<list<source-file>, string>;
+    // }
 
     version: func() -> string;
 
-    create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> result<compiler-host, string>;
+    // create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> result<compiler-host, string>;
 
-    create-program: func(root-names: list<string>, options: borrow<compiler-options>, host: borrow<compiler-host>) -> result<program, string>;
-    create-program2: func(options: borrow<create-program-options>) -> result<program, string>;
+    // create-program: func(root-names: list<string>, options: borrow<compiler-options>, host: borrow<compiler-host>) -> result<program, string>;
+    // create-program2: func(options: borrow<create-program-options>) -> result<program, string>;
 
-    get-pre-emit-diagnostics: func(program: borrow<program>) -> list<diagnostic>;
+    // get-pre-emit-diagnostics: func(program: borrow<program>) -> list<diagnostic>;
 
-    resource type-checker {
-    }
+    // resource type-checker {
+    // }
 
-    resource compiler-host {
-    }
+    // resource compiler-host {
+    // }
 
-    resource diagnostic {
-    }
+    // resource diagnostic {
+    // }
 
-    resource source-file {
-    }
+    // resource source-file {
+    // }
 }
 
 world root {
-  import ts:typescript-system/types@0.1.0;
+  // import ts:typescript-system/types@0.1.0;
   export typescript;
 }

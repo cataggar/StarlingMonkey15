@@ -16,9 +16,11 @@
     "bundle": "bun run bundle.ts",
     "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
   },
+  "dependencies": {
+    "@typespec/compiler": "0.63.0"
+  },
   "devDependencies": {
     "@bytecodealliance/jco": "file:../../jco",
-    "@types/bun": "1.1.14",
-    "typescript": "5.7.2"
+    "@types/bun": "1.1.14"
   }
 }
