@@ -25,6 +25,8 @@ interface typescript {
 
     version: func() -> string;
 
+    test: func();
+
     // create-compiler-host: func(compiler-options: borrow<compiler-options>, set-parent-nodes: bool) -> result<compiler-host, string>;
 
     // create-program: func(root-names: list<string>, options: borrow<compiler-options>, host: borrow<compiler-host>) -> result<program, string>;

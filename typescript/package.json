@@ -17,7 +17,9 @@
     "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
   },
   "dependencies": {
-    "@typespec/compiler": "0.63.0"
+    "@typespec/compiler": "file:../../typespec/packages/compiler",
+    "tmlanguage-generator": "file:../../typespec/packages/tmlanguage-generator",
+    "@typespec/internal-build-utils": "file:../../typespec/packages/internal-build-utils"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "file:../../jco",
