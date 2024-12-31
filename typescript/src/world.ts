@@ -1,4 +1,5 @@
 import { System } from 'ts:typescript-system/types@0.1.0';
+// import { TsTypescriptTypescript } from 'interfaces/ts-typescript-typescript';
 import * as ts from 'typescript';
 
 export function setSys() {
@@ -138,6 +139,9 @@ class SourceFile {
     inner() {
         return this._value;
     }
+    a(){
+        return "a";
+    }
 }
 
 class TypeChecker {
@@ -145,8 +149,9 @@ class TypeChecker {
     constructor(value: ts.TypeChecker) {
         this._value = value;
     }
-
-
+    a(){
+        return "a";
+    }
 }
 
 function version() {
@@ -254,7 +259,10 @@ class System2 implements ts.System {
 
 function createCompilerHost(options: CompilerOptions): CompilerHost {
     try {
-        return new CompilerHost(ts.createCompilerHost(options.inner()));
+        const host = ts.createCompilerHost(options.inner());
+        // console.log("createCompilerHost host", host);
+        return new CompilerHost(host);
+        // return new CompilerHost(ts.createCompilerHost(options.inner()));
     } catch (ex) {
         throw `createCompilerHost failed: ${ex}`;
     }
@@ -293,6 +301,9 @@ class Diagnostic {
     inner() {
         return this._value;
     }
+    a(){
+        return "a";
+    }
 }
 
 export const typescript = {
@@ -305,4 +316,8 @@ export const typescript = {
     createProgram2,
     getPreEmitDiagnostics,
     CreateProgramOptions,
+    CompilerHost,
+    Diagnostic,
+    SourceFile,
+    TypeChecker,
 }

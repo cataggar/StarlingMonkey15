@@ -33,15 +33,19 @@ interface typescript {
     get-pre-emit-diagnostics: func(program: borrow<program>) -> list<diagnostic>;
 
     resource type-checker {
+      a: func() -> string;
     }
 
     resource compiler-host {
+      a: func() -> string;
     }
 
     resource diagnostic {
+      a: func() -> string;
     }
 
     resource source-file {
+      test: func() -> string;
     }
 }
 
