@@ -14,7 +14,7 @@
     "types": "bunx jco types wit -o .",
     "tsc": "bunx tsc",
     "bundle": "bun run bundle.ts",
-    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d all"
+    "componentize": "bunx jco componentize world.js --wit wit -o ts-typescript.wasm -d clocks -d random -d http"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "file:../../jco",
