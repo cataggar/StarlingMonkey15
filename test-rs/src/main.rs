@@ -6,8 +6,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // ts::set_sys(sys::System::new());
 
+    ts::test();
     let version = ts::version();
-    println!("typespec version: {version}");
+    // println!("typespec version: {version}");
+    println!("Hello, world!");
 
     // let compilerOptions = ts::CompilerOptions::new();
     // let programOptions = ts::CreateProgramOptions::new(&["abc.ts".to_string()], &compilerOptions);

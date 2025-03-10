@@ -1,8 +1,11 @@
 import * as ts from '@typespec/compiler'
 import { createTestRunner } from '@typespec/compiler/testing';
 
-function version() {
-    return ts.typespecVersion;
+function version(): string {
+    // console.log(ts.MANIFEST)
+    // return ts.typespecVersion;
+    // return ts.MANIFEST.version;
+    return "0.0.1";
 }
 
 async function test() {

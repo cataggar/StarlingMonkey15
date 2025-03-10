@@ -11,8 +11,8 @@ let build = await Bun.build({
     external: [
         'ts:typescript-system/types@0.1.0',
     ],
+    // target: 'node',
     target: 'browser',
-    
 });
 if (!build.success) {
     console.error(build);
